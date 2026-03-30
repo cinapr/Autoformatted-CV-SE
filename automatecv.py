@@ -2,25 +2,9 @@ import sys
 import json
 #from openai import OpenAI
 
-from get_linkedin import scrape_job_description
-from generate_docx import generate_docx
-
-
-# ------------------------
-# Load file
-# ------------------------
-def load_file(path):
-    with open(path, encoding="utf-8") as f:
-        return f.read()
-
-
-# ------------------------
-# Save text
-# ------------------------
-def save_text(path, text):
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(text)
-
+from get_linkedin import scrape_job_description, replace_single_value, 
+from generate_docx_cv import generate_docx_cv
+from utility import load_file, save_text
 
 # ------------------------
 # GPT CALL
@@ -50,7 +34,7 @@ def main():
         python generate-CV.py <URL> <TEMPLATE.docx> <PROMPT.txt> <profile.txt> <scrap.txt> <data.json> <output.docx>
 
         Example:
-        python generate-CV.py "https://linkedin.com/job/..." "TEMPLATE.docx" "PROMPT.txt" "profile.txt" "scrap.txt" "data.json" "CVOUTPUT.docx"
+        python generate-CV.py "https://linkedin.com/job/..." "TEMPLATECV.docx" "PROMPT.txt" "profile.txt" "scrap.txt" "data.json" "CVOUTPUT.docx"
         """)
         return
 
@@ -113,7 +97,7 @@ OUTPUT STRICTLY IN JSON:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
     # 6. GENERATE DOCX
-    generate_docx(template_path, json_path, output_docx)
+    generate_docx_cv(template_path, json_path, output_docx)
 
     print("✅ CV generated successfully!")
 

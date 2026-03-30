@@ -2,79 +2,11 @@ from docx import Document
 from copy import deepcopy
 import json
 
-# TEMPLATE FOR TESTING
-#doc = Document("TEMPLATE.docx")
-
-
-# ------------------------
-# Preserve formatting
-# ------------------------
-def set_text(paragraph, text):
-    runs = paragraph.runs
-    if runs:
-        runs[0].text = text
-        for r in runs[1:]:
-            r.text = ""
-    else:
-        paragraph.add_run(text)
-
-
-# ------------------------
-# BULLET SECTION (generic)
-# ------------------------
-def insert_simple_bullets(doc, placeholder, items):
-    for para in doc.paragraphs:
-        if placeholder in para.text:
-            parent = para._element.getparent()
-            idx = parent.index(para._element)
-
-            for item in items:
-                new_p = deepcopy(para)
-                set_text(new_p, item)
-                parent.insert(idx, new_p._element)
-                idx += 1
-
-            parent.remove(para._element)
-            break
-
-
-# --------------------------------
-# LINES BULLET SECTION (title + value)
-# --------------------------------
-def insert_labeled_bullets(doc, placeholder, items):
-    for para in doc.paragraphs:
-        if placeholder in para.text:
-
-            parent = para._element.getparent()
-            idx = parent.index(para._element)
-
-            for item in items:
-                new_p = deepcopy(para)
-
-                # clear runs
-                for r in new_p.runs:
-                    r.text = ""
-
-                # title (bold)
-                run_title = new_p.runs[0]
-                run_title.text = item["title"].upper() + ": "
-
-                # value (normal)
-                #new_p.add_run(item["value"])
-                run_value = new_p.add_run(item["value"])
-
-                # copy font style from template
-                template_run = para.runs[-1]
-                run_value.font.name = template_run.font.name
-                run_value.font.size = template_run.font.size
-                run_value.bold = False
-
-                parent.insert(idx, new_p._element)
-                idx += 1
-
-            parent.remove(para._element)
-            break
-
+from utility import (
+    set_text,
+    insert_simple_bullets,
+    insert_labeled_bullets
+)
 
 # ------------------------
 # EXPERIENCE BLOCK
@@ -200,34 +132,3 @@ def remove_section(doc, section_title):
 
         if remove and "EDUCATION" in para.text:
             break
-
-
-
-# ------------------------
-# RUN
-# ------------------------
-
-def generate_docx(template_path, json_path, output_path):
-    # LOAD TEMPLATE DOCX
-    doc = Document(template_path)
-
-    # LOAD JSON
-    with open(json_path, encoding="utf-8") as f:
-        data = json.load(f)
-
-    insert_simple_bullets(doc, "{{SUMMARY_ITEM}}", data["summary"])
-    insert_labeled_bullets(doc, "{{TECH_TITLE}}", data["tech"])
-    insert_labeled_bullets(doc, "{{SKILL_TITLE}}", data["skills"])
-    insert_simple_bullets(doc, "{{AWARDS_BULLET}}", data["awards"])
-
-    insert_experience(doc, data["experience"])
-
-    replace_single_value(doc, "{{FOCUS_REPLACE}}", data["education"]["focus"])
-    replace_single_value(doc, "{{THESIS_REPLACE}}", data["education"]["thesis"])
-
-    if data.get("projects"):
-        insert_projects(doc, data["projects"])
-    else:
-        remove_section(doc, "OPEN-SOURCE PROJECTS")
-
-    doc.save(output_path)
