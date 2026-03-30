@@ -2,7 +2,7 @@ from docx import Document
 from copy import deepcopy
 import json
 
-doc = Document("EMPTY.docx")
+doc = Document("TEMPLATE.docx")
 
 
 # ------------------------
