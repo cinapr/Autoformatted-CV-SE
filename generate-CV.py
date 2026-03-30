@@ -1,6 +1,6 @@
 import sys
 import json
-from openai import OpenAI
+#from openai import OpenAI
 
 from get_linkedin import scrape_job_description
 from generate_docx import generate_docx
@@ -39,11 +39,21 @@ def generate_json(prompt):
 
     return json.loads(response.choices[0].message.content)
 
-
 # ------------------------
 # MAIN
 # ------------------------
 def main():
+    #IF SOME PARAMETER NOT PASSED
+    if len(sys.argv) < 8:
+        print("""
+        Usage:
+        python generate-CV.py <URL> <TEMPLATE.docx> <PROMPT.txt> <profile.txt> <scrap.txt> <data.json> <output.docx>
+
+        Example:
+        python generate-CV.py "https://linkedin.com/job/..." "TEMPLATE.docx" "PROMPT.txt" "profile.txt" "scrap.txt" "data.json" "CVOUTPUT.docx"
+        """)
+        return
+
     # CLI arguments
     url = sys.argv[1]
     template_path = sys.argv[2]
