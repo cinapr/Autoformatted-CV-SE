@@ -1,0 +1,68 @@
+{
+  "summary": [
+    "Experienced IT consultant in supply chain systems and analytics",
+    "Strong background in data driven decision support and optimization",
+    "Focused on sustainable and ethical software engineering"
+  ],
+  "education": {
+    "focus": "Sustainable IT, software architecture, data driven systems",
+    "thesis": "Automated ethical decision support tool using ECCOLA and LLMs"
+  },
+  "tech": [
+    {"title": "Data", "value": "SQL, Python, Power BI"},
+    {"title": "Systems", "value": "SAP, ERP, Logistics Platforms"}
+  ],
+  "skills": [
+    {"title": "Analysis", "value": "KPI Monitoring, Optimization"},
+    {"title": "Business", "value": "Stakeholder Analysis, Requirements"}
+  ],
+  "awards": [
+    "SAP AI Ethics Certification",
+    "Microsoft Office Specialist"
+  ],
+  "experience": [
+    {
+      "title": "Senior IT Consultant",
+      "company": "Wilmar Consultancy Services",
+      "location": "Singapore, Indonesia, Remote Global",
+      "time": "Jul 2018 – May 2022",
+      "bullets": [
+        "Analyzed logistics data across 150 plus sites using SQL",
+        "Integrated reporting from 100 plus factories into central systems",
+        "Reduced processing time to under 3 minutes via optimization"
+      ],
+      "projects": [
+        "NDA Project: Built executive dashboards using real time operational data",
+        "Transformed raw factory datasets into decision ready analytics"
+      ]
+    },
+    {
+      "title": "Intern Software Consultant",
+      "company": "Solita",
+      "location": "Finland",
+      "time": "Apr 2023 – Jun 2023",
+      "bullets": [
+        "Developed REST APIs for circular waste management data exchange",
+        "Translated requirements into system architecture and documentation",
+        "Supported agile planning with KPI driven user stories"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Energy Efficiency Analysis of Collaborative Software",
+      "bullets": [
+        "Analyzed energy datasets using Python and R",
+        "Achieved 11 percent reduction through optimization insights",
+        "Delivered actionable recommendations for users and developers"
+      ]
+    },
+    {
+      "title": "LLM Ethics",
+      "bullets": [
+        "Bullet sample LLM 1",
+        "Bullet sample LLM 2"
+      ]
+    }
+  ]
+}

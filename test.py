@@ -1,28 +1,15 @@
 from docx import Document
 from copy import deepcopy
-from docx.oxml.ns import qn
+import json
 
-# ------------------------
-# Load document
-# ------------------------
 doc = Document("EMPTY.docx")
 
 
 # ------------------------
-# Helper: replace text safely inside XML
+# Preserve formatting
 # ------------------------
-def replace_text_in_element(element, placeholder, value):
-    for node in element.iter():
-        if node.tag == qn('w:t') and node.text:
-            if placeholder in node.text:
-                node.text = node.text.replace(placeholder, value)
-
-# -----------------------------------------------------------------------
-# Helper: using previous font-formatting, instead of default calibri 12pt
-# -----------------------------------------------------------------------
-def set_paragraph_text_preserve_style(paragraph, text):
+def set_text(paragraph, text):
     runs = paragraph.runs
-
     if runs:
         runs[0].text = text
         for r in runs[1:]:
@@ -31,32 +18,57 @@ def set_paragraph_text_preserve_style(paragraph, text):
         paragraph.add_run(text)
 
 
-
-# --------------------------------------------
-# Helper: replace text inline like in skills
-# --------------------------------------------
-def replace_inline(doc, placeholder, value):
-    for para in doc.paragraphs:
-        if placeholder in para.text:
-            para.text = para.text.replace(placeholder, value)
-
-
 # ------------------------
-# Insert bullet list
+# BULLET SECTION (generic)
 # ------------------------
-def insert_bullets(doc, placeholder, items):
+def insert_simple_bullets(doc, placeholder, items):
     for para in doc.paragraphs:
         if placeholder in para.text:
             parent = para._element.getparent()
             idx = parent.index(para._element)
 
             for item in items:
-                new_para = deepcopy(para)
+                new_p = deepcopy(para)
+                set_text(new_p, item)
+                parent.insert(idx, new_p._element)
+                idx += 1
 
-                # THIS is the fix
-                set_paragraph_text_preserve_style(new_para, item) #new_para.text = item
+            parent.remove(para._element)
+            break
 
-                parent.insert(idx, new_para._element)
+
+# --------------------------------
+# LINES BULLET SECTION (title + value)
+# --------------------------------
+def insert_labeled_bullets(doc, placeholder, items):
+    for para in doc.paragraphs:
+        if placeholder in para.text:
+
+            parent = para._element.getparent()
+            idx = parent.index(para._element)
+
+            for item in items:
+                new_p = deepcopy(para)
+
+                # clear runs
+                for r in new_p.runs:
+                    r.text = ""
+
+                # title (bold)
+                run_title = new_p.runs[0]
+                run_title.text = item["title"].upper() + ": "
+
+                # value (normal)
+                #new_p.add_run(item["value"])
+                run_value = new_p.add_run(item["value"])
+
+                # copy font style from template
+                template_run = para.runs[-1]
+                run_value.font.name = template_run.font.name
+                run_value.font.size = template_run.font.size
+                run_value.bold = False
+
+                parent.insert(idx, new_p._element)
                 idx += 1
 
             parent.remove(para._element)
@@ -64,108 +76,157 @@ def insert_bullets(doc, placeholder, items):
 
 
 # ------------------------
-# Insert project blocks
+# EXPERIENCE BLOCK
+# ------------------------
+def insert_experience(doc, experiences):
+    paras = doc.paragraphs
+
+    for i, para in enumerate(paras):
+        if "{{EXPERIENCE_BLOCK}}" in para.text:
+
+            parent = para._element.getparent()
+            idx = parent.index(para._element)
+
+            title_template = paras[i + 1]
+            bullet_template = paras[i + 2]
+            project_title_template = paras[i + 3]
+            project_bullet_template = paras[i + 4]
+
+            for exp in experiences:
+                # Title line
+                title_text = f"{exp['title']} | {exp['company']} | {exp['location']} | {exp['time']}"
+                title_p = deepcopy(title_template)
+                set_text(title_p, title_text)
+                parent.insert(idx, title_p._element)
+                idx += 1
+
+                # Main bullets
+                for b in exp["bullets"]:
+                    bullet_p = deepcopy(bullet_template)
+                    set_text(bullet_p, b)
+                    parent.insert(idx, bullet_p._element)
+                    idx += 1
+
+                # Optional project section
+                if exp.get("projects"):
+                    proj_title = deepcopy(project_title_template)
+                    parent.insert(idx, proj_title._element)
+                    idx += 1
+
+                    for pb in exp["projects"]:
+                        proj_b = deepcopy(project_bullet_template)
+                        set_text(proj_b, pb)
+                        parent.insert(idx, proj_b._element)
+                        idx += 1
+
+                # AFTER finishing one experience give newline spaces in between
+                spacer = deepcopy(title_template)
+                set_text(spacer, "")
+                parent.insert(idx, spacer._element)
+                idx += 1
+
+            # cleanup
+            parent.remove(para._element)
+            parent.remove(title_template._element)
+            parent.remove(bullet_template._element)
+            parent.remove(project_title_template._element)
+            parent.remove(project_bullet_template._element)
+
+            break
+
+
+# ------------------------
+# PROJECT BLOCK
 # ------------------------
 def insert_projects(doc, projects):
-    paragraphs = doc.paragraphs
+    paras = doc.paragraphs
 
-    for i, para in enumerate(paragraphs):
+    for i, para in enumerate(paras):
         if "{{PROJECT_BLOCK}}" in para.text:
 
             parent = para._element.getparent()
             idx = parent.index(para._element)
 
-            title_template = paragraphs[i + 1]
-            bullet_template = paragraphs[i + 2]
+            title_template = paras[i + 1]
+            bullet_template = paras[i + 2]
 
             for proj in projects:
-                # Title
-                new_title = deepcopy(title_template)
-                set_paragraph_text_preserve_style(new_title, proj["title"]) #new_title.text = proj["title"]
-                parent.insert(idx, new_title._element)
+                title_p = deepcopy(title_template)
+                set_text(title_p, proj["title"])
+                parent.insert(idx, title_p._element)
                 idx += 1
 
-                # Bullets
                 for b in proj["bullets"]:
-                    new_bullet = deepcopy(bullet_template)
-                    set_paragraph_text_preserve_style(new_bullet, b) #new_bullet.text = b
-                    parent.insert(idx, new_bullet._element)
+                    bullet_p = deepcopy(bullet_template)
+                    set_text(bullet_p, b)
+                    parent.insert(idx, bullet_p._element)
                     idx += 1
 
-            # remove templates
+                # AFTER finishing one project give newline spaces in between
+                spacer = deepcopy(title_template)
+                set_text(spacer, "")
+                parent.insert(idx, spacer._element)
+                idx += 1
+
             parent.remove(para._element)
             parent.remove(title_template._element)
             parent.remove(bullet_template._element)
 
             break
 
+# ----------------------------------------
+# REPLACE SINGLE VALUE (FOCUS/THESIS TITLE)
+# -----------------------------------------
+def replace_single_value(doc, placeholder, value):
+    for para in doc.paragraphs:
+        if placeholder in para.text:
+            for run in para.runs:
+                if placeholder in run.text:
+                    run.text = run.text.replace(placeholder, value)
 
 # ------------------------
-# TEST DATA (hardcoded)
+# REMOVE OPTIONAL SECTION
+# ------------------------
+def remove_section(doc, section_title):
+    remove = False
+    for para in doc.paragraphs:
+        if section_title in para.text:
+            remove = True
+
+        if remove:
+            p = para._element
+            p.getparent().remove(p)
+
+        if remove and "EDUCATION" in para.text:
+            break
+
+
+# ------------------------
+# LOAD JSON (example)
 # ------------------------
 
-wilmar_bullets = [
-    "Analyzed logistics transaction data across 150+ sites using SQL",
-    "Integrated reporting from 100+ factories into centralized systems",
-    "Identified process bottlenecks via data analysis improving flow efficiency",
-    "Reduced transaction processing time to under 3 minutes via optimization",
-    "Improved SQL performance reducing timeout incidents by over 50 percent",
-    "Enabled planning decisions using historical transaction trend analysis",
-    "Supported logistics systems including queue loading and vehicle flow",
-    "Delivered systems across 1000 plus servers in multi region operations",
-    "Reduced repeated incidents by over 70 percent through root cause analysis"
-]
-
-solita_bullets = [
-    "Developed REST APIs enabling structured circular waste management data exchange",
-    "Translated requirements into data models and system architecture documentation",
-    "Supported Agile planning with KPI driven user stories and tracking"
-]
-
-projects = [
-    {
-        "title": "Energy Efficiency Analysis of Collaborative Software (Python, R)",
-        "bullets": [
-            "Collected and analyzed energy datasets using Python and R",
-            "Achieved 11.07 percent energy reduction through usage optimization insights",
-            "Delivered visual actionable recommendations for users and developers"
-        ]
-    }
-]
-
-summary_bullets = [
-    "Experienced IT consultant specializing in supply chain systems and analytics",
-    "Strong background in data driven decision support and system optimization",
-    "Focused on sustainable and ethical software engineering practices"
-]
-
-rnd_wilmar_bullets = [
-    "Gathered transaction records from 150 factories for analysis",
-    "Transformed datasets into structured decision ready visuals",
-    "Built dashboards for C level stakeholders with clear insights"
-]
+with open("data.json", encoding="utf-8") as f:
+    data = json.load(f)
 
 # ------------------------
 # RUN
 # ------------------------
 
-insert_bullets(doc, "{{EXP_WILMAR_ITEM}}", wilmar_bullets)
-insert_bullets(doc, "{{EXP_SOLITA_ITEM}}", solita_bullets)
-insert_bullets(doc, "{{SUMMARY_ITEM}}", summary_bullets)
-insert_bullets(doc, "{{RND_WILMAR_ITEM}}", rnd_wilmar_bullets)
+insert_simple_bullets(doc, "{{SUMMARY_ITEM}}", data["summary"])
 
-replace_inline(doc, "{{TECH_TITLE}}", "DATA")
-replace_inline(doc, "{{TECH_STACK_ITEM}}", "SQL, Python, Power BI")
-replace_inline(doc, "{{TECH_TITLE}}", "CODE")
-replace_inline(doc, "{{TECH_STACK_ITEM}}", "C#, Python, PHP")
-replace_inline(doc, "{{SKILL_TITLE}}", "ANALYSIS")
-replace_inline(doc, "{{SKILL_ITEM}}", "KPI Monitoring, Process Optimization")
-replace_inline(doc, "{{SKILL_TITLE}}", "SUPPORT")
-replace_inline(doc, "{{SKILL_ITEM}}", "Documentation, Remote")
+insert_labeled_bullets(doc, "{{TECH_TITLE}}", data["tech"])
+insert_labeled_bullets(doc, "{{SKILL_TITLE}}", data["skills"])
 
-insert_projects(doc, projects)
+insert_simple_bullets(doc, "{{AWARDS_BULLET}}", data["awards"])
 
-# Save output
-doc.save("TEST_OUTPUT.docx")
+insert_experience(doc, data["experience"])
 
-print("Done. Check TEST_OUTPUT.docx")
+replace_single_value(doc, "{{FOCUS_REPLACE}}", data["education"]["focus"])
+replace_single_value(doc, "{{THESIS_REPLACE}}", data["education"]["thesis"])
+
+if data.get("projects"):
+    insert_projects(doc, data["projects"])
+else:
+    remove_section(doc, "OPEN-SOURCE PROJECTS")
+
+doc.save("FINAL_OUTPUT.docx")
