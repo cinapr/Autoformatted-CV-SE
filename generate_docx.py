@@ -1,6 +1,7 @@
+import json
+
 from docx import Document
 from copy import deepcopy
-import json
 
 from utility import (
     set_text,

@@ -1,8 +1,8 @@
 import sys
 import json
+
 from docx import Document
 from copy import deepcopy
-import json
 
 from get_linkedin import scrape_job_description
 from generate_docx import (
