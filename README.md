@@ -152,54 +152,54 @@ Thesis: {{THESIS_REPLACE}}
 
 1. generate_cv.py (Main Controller)
 
-Handles:
-- CLI arguments
-- scraping job description
-- building GPT prompt
-- calling GPT API
-- saving JSON
-- triggering DOCX generation
+    Handles:
+    - CLI arguments
+    - scraping job description
+    - building GPT prompt
+    - calling GPT API
+    - saving JSON
+    - triggering DOCX generation
 
-Key functions:
-- main()
-- generate_json(prompt)
-- load_file(path)
-- save_text(path)
+    Key functions:
+    - main()
+    - generate_json(prompt)
+    - load_file(path)
+    - save_text(path)
 
 2. get_linkedin.py
 
-Handles:
-- scraping job description from LinkedIn
+    Handles:
+    - scraping job description from LinkedIn
 
-Key function:
-- scrape_job_description(url)
+    Key function:
+    - scrape_job_description(url)
 
-Returns:
-- string (job description)
+    Returns:
+    - string (job description)
 
 3. generate_docx.py
 
-Handles:
-- CV structure logic
-- mapping JSON → Word template
+    Handles:
+    - CV structure logic
+    - mapping JSON → Word template
 
-Key functions:
-- generate_docx(template, json, output)
-- insert_experience()
-- insert_projects()
-- replace_single_value()
-- remove_section()
+    Key functions:
+    - generate_docx(template, json, output)
+    - insert_experience()
+    - insert_projects()
+    - replace_single_value()
+    - remove_section()
 
 4. utility.py
 
-Handles:
-- low-level formatting (Word manipulation)
-- reusable helpers
+    Handles:
+    - low-level formatting (Word manipulation)
+    - reusable helpers
 
-Key functions:
-- set_text()
-- insert_simple_bullets()
-- insert_labeled_bullets()
+    Key functions:
+    - set_text()
+    - insert_simple_bullets()
+    - insert_labeled_bullets()
 
 ---
 
