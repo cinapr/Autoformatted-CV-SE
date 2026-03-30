@@ -2,7 +2,8 @@ from docx import Document
 from copy import deepcopy
 import json
 
-doc = Document("TEMPLATE.docx")
+# TEMPLATE FOR TESTING
+#doc = Document("TEMPLATE.docx")
 
 
 # ------------------------
@@ -201,32 +202,32 @@ def remove_section(doc, section_title):
             break
 
 
-# ------------------------
-# LOAD JSON (example)
-# ------------------------
-
-with open("data.json", encoding="utf-8") as f:
-    data = json.load(f)
 
 # ------------------------
 # RUN
 # ------------------------
 
-insert_simple_bullets(doc, "{{SUMMARY_ITEM}}", data["summary"])
+def generate_docx(template_path, json_path, output_path):
+    # LOAD TEMPLATE DOCX
+    doc = Document(template_path)
 
-insert_labeled_bullets(doc, "{{TECH_TITLE}}", data["tech"])
-insert_labeled_bullets(doc, "{{SKILL_TITLE}}", data["skills"])
+    # LOAD JSON
+    with open(json_path, encoding="utf-8") as f:
+        data = json.load(f)
 
-insert_simple_bullets(doc, "{{AWARDS_BULLET}}", data["awards"])
+    insert_simple_bullets(doc, "{{SUMMARY_ITEM}}", data["summary"])
+    insert_labeled_bullets(doc, "{{TECH_TITLE}}", data["tech"])
+    insert_labeled_bullets(doc, "{{SKILL_TITLE}}", data["skills"])
+    insert_simple_bullets(doc, "{{AWARDS_BULLET}}", data["awards"])
 
-insert_experience(doc, data["experience"])
+    insert_experience(doc, data["experience"])
 
-replace_single_value(doc, "{{FOCUS_REPLACE}}", data["education"]["focus"])
-replace_single_value(doc, "{{THESIS_REPLACE}}", data["education"]["thesis"])
+    replace_single_value(doc, "{{FOCUS_REPLACE}}", data["education"]["focus"])
+    replace_single_value(doc, "{{THESIS_REPLACE}}", data["education"]["thesis"])
 
-if data.get("projects"):
-    insert_projects(doc, data["projects"])
-else:
-    remove_section(doc, "OPEN-SOURCE PROJECTS")
+    if data.get("projects"):
+        insert_projects(doc, data["projects"])
+    else:
+        remove_section(doc, "OPEN-SOURCE PROJECTS")
 
-doc.save("FINAL_OUTPUT.docx")
+    doc.save(output_path)

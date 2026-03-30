@@ -1,0 +1,285 @@
+Education
+Università degli Studi dell’Aquila	L’Aquila, Italy
+LUT University (Lappeenranta-Lahti University of Technology)	Lappeenranta, Finland
+Vrije Universiteit Amsterdam	Amsterdam, Netherlands
+M.Sc. (Joint Erasmus Mundus) Software Engineers For Green Deal (Sustainability)	September 2022-August 2024
+- Awarded Erasmus Mundus full scholarship (top 3% globally) for a triple-degree master’s across 6 EU countries.
+- Focus: Carbon reduction, Circular economy, and Sustainable software practices.
+- Courses: Sustainability and IT, Running a software project, Software Architecture, Software engineering for IoT.
+- Thesis: Prototyping an Automated Ethical Decision-Making Support Tool for User Story Analysis to Decrease Ethical Risk in Agile Software Project Management
+
+Universitas Sumatera Utara(USU)	Medan, Indonesia
+Sarjana Komputer (Bachelor of Computer Science)	July 2013-January 2018
+
+
+
+Professional Experience
+Wilmar Consultancy Services	Medan, Indonesia
+IT Consultant (Senior)	July 2018 – May 2022
+Served in cross-functional rotation role covering: Requirements engineering / Functional analyst, System architecture design, Software-IoT integration, IT vendor negotiations, IT vendor services integration, Software development, System testing, Technical documentation, User training, System delivery, and L4 IT support.
+Sectors: agriculture, transportation, production & logistic, manufacturing, FCMG, IT Consulting, agricultural financing, oil and plantation laboratories, and bio-oil processing
+Region: Remote Global / 2 continents (Asia & Africa) included: Indonesia, Malaysia, Singapore, Myanmar, Ghana, Ethiopia, Uganda, Ivory Coast, Zambia, Nigeria, Bangladesh, Sri Lanka, Pakistan, etc.
+Project included: logistic & production management system, financial & transaction dashboard, supply chain, ERP & PLM, unmmanned weighing system, automated loading-unloading goods from truck, automatic transaction, vehicle traffic management, parking management, quality assurance, data collection, invoice and reporting, automated security enforcement & physical security, law & regulation compliance.
+
+IT Consulting, System Architecture, System Analyst, & R&D
+- Collaborated in agile teams to implement iterative system improvements.
+- Designed secure, eco-friendly, and scalable system architectures.
+- Fraud prevention: Architected integrated systems with built-in mechanisms to minimize opportunities for user fraud.
+- Top-down system design and process optimization, by make sure no transaction exceed 3 minutes.
+- Established stable software-IoT integration.
+- Researched and integrated new technologies to reduce technical debt and enhance system capabilities.
+- Defined product roadmaps and prioritising features based on business value, technical feasibility, and customer needs.
+- Identify and recommend improvements to the product development and requirements gathering processes to enhance efficiency, clarity, and quality.
+- Provide technical clarity and context to developers, addressing any questions or concerns that arise during the development process.
+
+Vendor & Stakeholder Management
+- Worked closely with stakeholders to translate insights into actions, improving efficiency and customer satisfaction
+- Gathered user requirements and translated them into system architectures aligned with SOPs & regulatory frameworks.
+- Drafted change request contracts to formalize system enhancements and compliance needs.
+- Maintained stakeholder communication to ensure alignment of IT solutions with business objectives, ensuring requirements are correctly interpreted and implemented, providing guidance throughout the development lifecycle
+- Prepared IT hardware equipment procurement requirements list, optimizing costs while maintaining quality.
+- Negotiated IT vendor contracts, service integrations, and tech compatibility assessments for 10+ projects.
+
+Full-Stack Software Engineering, Software Development & System Integration
+- Developed backend solutions ensuring seamless front-end and backend communication using C, C#, .NET Framework, ASP.NET, Python, SQL.
+- Designed and optimized SQL-driven transaction databases for real-time invoicing, reporting, ERP, tax compliance, and unmanned transaction processing for automated business processes, connecting 150+ companies reports.
+- Built secure integration layers connecting business processes.
+- Built custom dashboards for data analytics, integrating ERP with real-time reporting systems.
+- Evaluated, developed prototypes, and tested hardware integration from vendors to ensure seamless compatibility with existing systems.
+- Experienced with tools such as Visual Studio, SQL Server, DBMS, Arduino Uno, Microsoft Server, Cloud platforms (Azure and Digital Ocean), Internal ERP systems, etc.
+- Provide regular updates to the Product team on the status of projects, potential risks, and opportunities
+
+Technical Documentation
+- Created detailed technical documentation, SOPs, change request contracts, user guides, and developer manuals to ensure maintainability and compliance.
+- Authored in-code documentation to enhance long-term system clarity and sustainability.
+- Communicate complex technical information in an easily understandable way to non-technical stakeholders.
+- Create and maintain comprehensive documentation, including functional specifications, process flow diagrams, wireframes, and user journey maps.
+- Develop templates and standards for capturing product requirements to ensure consistency and clarity across product streams
+
+Quality Assurance & Testing
+- Collaborate with QA teams to ensure product features meet the defined requirements and quality standards
+- Conducted System Integration Testing (SIT) & User Acceptance Testing (UAT) with product owners and clients, to validate that developed features align with business needs
+- Ensured regulatory adherence through quality assurance and compliance enforcement
+- Provide feedback and support in refining features based on testing outcomes.
+
+Project Delivery & Training
+- Delivered enterprise-scale systems deployed across 1000+ servers and client PCs globally.
+- Trained end-users and IT teams for smooth system transitions and process adoption
+- Track and report on the progress of product development, highlighting any issues or risks that could impact delivery timelines.
+- Facilitate workshops and meetings to bridge knowledge gaps and ensure alignment across teams
+
+IT Support
+- Provided end-user support from planning to post-implementation for long-term system stability and usability.
+- Led L4 IT support team (3 members), managing 100+ complex technical cases weekly (4˜000 cases weekly, including escalations from L1-L3).
+- Experienced with ticketing systems tools like JIRA for incident tracking and resolution.
+- Documented incident reports, provided feedback on root causes, and contributed to bug fixes
+- Provided IT support to end user (Windows, Printer, digital parking equipment), physically or remotely (through VPN).
+
+R&D Engineer — Production & Logistics Automation
+Research Area: IoT, Computer Vision & Biometric, Queue Automation, Compliance & Governance Automation,
+Data Visualization, Vehicle Sensor & Positioning, IT for Agriculture, IT for Food Production & FMCG
+- Conducted applied industrial research on human-centered automation using empirical evaluation and prototyping
+- First IT staff in R&D rotation; formalized SOP-based research methodology for production logistics automation
+- Integrated executive dashboards linking datasets from 100+ factories across two countries for decisions
+- Prototyped human-triggered queue and loading automation to study user control and flow efficiency
+- Automated customs reporting and invoicing to National Customs Authority, eliminating tax omission errors
+- Built biometric driver identification integrated with ANPR systems to enable vehicle traceability
+- Applied IoT-based human identification to reduce physical contact during COVID in HR and logistics
+- Developed Arduino-based queue automation POC and scaled to industrial-grade microcontroller systems
+- Co-developed automated sampling tower with auto-calling and robotic arm to reduce COVID contact
+- Evaluated vehicle positioning, queuing logic, and flow control
+- Assessed IR, LiDAR, VLD, vision sensors, and ANPR accuracy across four nations for reliability
+
+
+Task with calculated result/numerical achievement:
+- Facilitated change management initiatives, training end-users and IT teams, which resulted in 100% adoption rate of new processes and systems across Asia & Africa.
+- Coordinated implementation efforts for 150+ plantations, including software-IoT and hardware integrations.
+- Conducted System Integration Testing (SIT) and User Acceptance Testing (UAT) with product owners and clients for customized features, validating alignment with business needs and reducing post-launch issues.
+- Enhanced 100+ change requests contracts from various stakeholders.
+- Architected integrated systems with built-in mechanisms to minimize opportunities for user fraud.
+- Optimized top-down system design and processes, reducing transaction time to under 3 minutes.
+- Led an L4 IT support team of 3 members, managing 100+ complex technical cases weekly, 4000+ cases weekly counted L1-L3 escalations. Decrease repeated complaints more than 70% by quick bugs fixing
+- Analyzed user feedback, identified pain points, and recommended SQL improvement, leading to more than 50% less timeout.
+- Negotiated 10+ IT tech contracts and integration service assessment, keep up latest technology in Covid.
+- Delivered enterprise-scale systems deployed across 1000+ servers and client PCs globally, impacting 150+ companies’ reporting.
+
+SOLITA	Finland
+Intern Software Consultant (PMO, Functional Analyst, QA, Technical Writer)	April 2023 – June 2023
+- Agile team to develop a standardized dataspace supporting circular economy in mining waste processing.
+- Developed RESTful APIs for efficient data sharing and access.
+- Produced requirement list, solution architecture, technical documentation, project reports, time logs, and meeting notes.
+- Managed Agile project tracking in JIRA by participating in sprint planning, backlog refinement, and reviews
+- Documenting clear user stories, workflows, and acceptance criteria to support effective software development.
+- The system is currently promoted by Solita to the Finnish Ministry of Economic Affairs and Employment.
+- Developed REST API for standardized dataspace to support circular economy in Finnish mining waste
+- Captured requirements and produced architecture and technical documentation for Agile team.
+- Managed Jira workflows with clear user stories, KPIs, and sprint deliverables (PMO, Technical Writer)
+- Communicated analytical findings to non-technical stakeholders with visual summaries (Functional Analyst)
+- The system is currently promoted by Solita to the Finnish Ministry of Economic Affairs and Employment.
+
+
+
+Research Experience
+Breakthrough Technology Innovation Research Group (Vrije Universiteit Amsterdam) Amsterdam, Netherlands
+Master Student Researcher	November 2023 – January 2024
+- Researched stakeholder relationships in technology adoption for strategic innovation with a focus on business resilience.
+- Studied the impact of decision-making on economic sustainability by analyzing case studies to understand stakeholder dynamics (Business, Research, Government, and Environment) in technology adoption.
+
+
+
+Skills & Interests
+Technical Skills:
+- Programming/Scripting: C#, C#.NET, ASP.NET, C, Python, SQL, PL/SQL
+- Tools: Visual Studio, Microsoft Visual Studio Code, SQL Server, DBMS, Jira, ERP systems, Arduino Uno, Ubuntu, Ubuntu Linux Server, Microsoft Windows Server, Microsoft Office (Certification: Certiport-Microsoft Office Specialist)
+- Hardware: Hardware-Software Integration, IoT Integration, SDK, Micro-controller
+- Advanced Tech, AI, Data, LLM & Sustainability IT: Large Language Model (LLM) Fine-Tuning, Ethical AI (Artificial Intelligence), Ethical IT (Information Technology), ACM CoC, Sustainability Awareness Framework (SusAF)
+Non-Technical Skills:
+- Sustainability & Ethics: Ethics, Circular Economy, Economic Sustainability & Resilience, Sustainability in Tech
+- Methodologies & Practices: Agile, Scrum, Digital Transformation, Requirement Engineering, Rapid Prototyping, Interdisciplinary IT, Decision Making, Strategic Thinking
+- Analysis & Research: User Requirement, Requirement Gathering, Requirement Analysis, Stakeholder Analysis, Operations Analysis, Functional Analysis, System Analysis (Certification: Microsoft Business Analyst Fundamentals), Solution Architecture, Design System, Technology Adoption, What-if & Potential Analysis
+- Project, Testing, & Delivery: Project Reporting, Project Rotation, Rotating Roles, Timesheet Management, Cross-Functional Team Collaboration & Communication, System Integration Testing (SIT), User Acceptance Testing (UAT), User Acceptance Testing Support, Quality Assurance, System Integration, Project Delivery, Technical Delivery, Delivering Specialist
+- Support, Training & Documentation: Technical Support, Remote Support, IT End User Support, ERP Support, IT Mentoring, Mentorship, Teaching, IT Training, End User Documentation, Writing Technical Documents, Code In-Line Documentation, Technical Writing
+Roles & Interests: System Analyst, Requirement Engineer, Functional IT Analyst, Operational IT Analyst, Technical IT Analyst, Functional Consultant, Support Engineer, Solution Architect, Digital Business Analyst, Digital Transformation, Sustainability, IT Business Analyst, Digital Business Analysts, IT Support, Delivering Specialist
+Language: Indonesian (Native), English (Certification: IELTS C1), Chinese Mandarin (Certification: TOCFL A2), Chinese MinNan-Fujian-Hokkien-Taiwanese Dialect (Bilingual-Fluency), Bahasa Melayu/Malay (Conversational)
+
+
+
+Volunteering & Leadership Activities
+Information Technology Laboratory-assistant Group	Medan, Indonesia
+Senior Administrative Member	September 2015-August 2017
+- Managing administrative tasks for enhancing team effectiveness, policy compliancess and collaboration.
+- Improving accuracy and accountability in shift management for teaching assistants using timesheets.
+- Led the recruitment and training of new teaching assistant staff, fostering a skilled and cohesive team.
+Teaching Assistant	September 2015-August 2017
+- Classroom teaching, mentored students in practical projects (Programming Fundamentals | Data Communication and Computer Networks | Linux System Administrator | Artificial Intelligence and Intelligent Systems).
+- Assisted lecturers in administrative duties: Developing syllabuses / textbooks and creating study materials in various formats including spreadsheets, documents, and presentations.
+
+
+
+
+Awards
+- Erasmus Mundus Joint Master Degree Scholarship Awardee (2022-2024) Awarded	fully	funded scholarship by the European Union for attending international joint master degree program.
+- Best Presenter in ICAEB2024 8th (2024) International Conference on Applied Economics and Business for the paper titled Exploring Stakeholder Relationships in Technology Adoption as Strategic Innovation.
+- Highest Achievement Student of the Class of 2013 (2018) Awarded by the IT Department, Universitas Sumatera Utara, for achieving the highest academic standing in the cohort.
+- Thesis Grant (2018) Received from Universitas Sumatera Utara in recognition of an exceptional thesis.
+- Finalists of GEMASTIK VII (2014) Recognized by The Ministry of Education and Culture - Directorate General of Higher Education, for outstanding performance in the National University Student Summit on Information Technology and Communication.
+- Academic Achievement Improvement-Merit Scholarships (2014) Awarded by The Ministry of Research and Higher Education for significant academic excellence.
+
+
+
+
+Certifications
+- Business Analysis Fundamentals (16 November 2024) - Microsoft & Coursera
+- International English Language Testing System (IELTS) C1 (8 November 2021) - IDP
+- Test of Chinese as a Foreign Language (TOCFL) A2 (2 May 2021) - Steering Committee for the Test Of Proficiency-Huayu
+- Microsoft Office Specialist (Office Powerpoint 2013) (17 October 2017) - Microsoft & Certiport
+- Putting AI Ethics in Practice (SAP, 2025)
+- SAP Professional Fundamentals (SAP, 2026)
+- Business Analysis Fundamentals (Microsoft, 2024) 
+- Miro essentials (Miro, 27 December 2025)
+
+======================
+
+Some of my notable open-source projects (TITLE - SHORT DESCRIPTION - TAGS)
+
+Systemize Renewable Energy Indonesia : System architecture for innovative system aimed at enhancing renewable energy adoption in Indonesia.
+Tags: Software Architecture, User Requirements, Documentation, Ruled-Based AI, Energy Saving, Power Grid Electricity, Smart Grid, Smart Home
+
+  
+An Empirical Study on the Energy Efficiency of Collaborative Software : Comparing Energy Consumption between Collaborative Software Desktop Applications repeatedly (PyAutoGUI) monitoring Power Consumption (PowerJoular) and then comparing the result using Data Science (R).
+Tags: Full System, Energy Monitoring, Automating Desktop, Energy Saving, Data Science, R, Python, RStudio
+
+
+MineMatch - Circular Economy in Mining
+Agile Project Team that worked with Solita for creating standarised dataspace for helping mining industry in Finland for reselling their side product to other party.
+Tags: Full System, User Requirements, Circular Economy, Mining, Consulting, Documentation, collaboration, circular economy, centralised platform data sharing, data sharing, advanced technologies, standardised protocols, efficient data exchange, sustainable future, rest API, postman, SDLC
+
+   
+
+Automating Sustainability Awareness Framework (SusAF) : The Sustainability Awareness Framework (SusAF) is framework for guiding software developer for measuring how sustainable their system and the possible of future sustainable risks. This project is made in 48 hrs hackathon to automate SusAF checking system with LLM.
+Tags: Full System Sustainability, Risk Framework, Sustainability, Framework, Automation, AI, ML, Large-Language Model (LLM), Large-Language Model (LLM) Fine-Tuning
+
+  
+
+CO2 Tracker
+A Flutter-based platform designed to promote transparency, awareness, and engagement in reducing carbon emissions. This project empowers individuals and communities to make informed decisions about their energy consumption, enabling proactive steps towards sustainability. We also did sustainability framework risk analysis toward this system.
+Tags: Hackathon 24hr, Ideation, Sustainability, Energy Consumption, Energy Saving, Community Awareness, Social Game
+
+ 
+
+GreenSpin : This system, built during a 24-hour hackathon, promotes sustainable fashion by educating consumers, fostering a community around eco-friendly textile fibers, and encouraging circular economy practices through features like personalized recommendations and a sustainability map. This projects consists of ideation, software architecture, marketing ads video, and business pitch.
+Tags: Hackathon 24hr, Ideation, Fashion Sustainability, Mobile Apps, Community Gathering, Social Game, Sustainability Risk Assessment, Digital Marketing
+
+   
+
+Automating Suggestion of Ethical Implementation Method on Agile Software Project Management : Drawing on recent debates surrounding the feasibility of automating ethical decision-making within software engineering, this study will study the potential for automating IT Ethics assessment/suggestion of Agile software management. By employing narrative literature review, prototyping and survey, this research seeks to navigate the uncharted territories of ethics in IT, by giving the answer of how feasible is getting automated ethics recommendations from backlogs of agile tool.
+Tags: Software Architecture, Requirement Engineering, Design Decision, Python, Ethics, Ethical AI Ethical IT, Ethical Decision-Making, Agile, Software Project Management Automation, Automation, ECCOLA, GPT-3.5, Ethical Risk Management, Software Development, Ethics, Large Language Models (LLM) Fine-Tuning, Ethical Assessment Tools, Ethical Framework
+
+  
+
+LLM Comparison for Ethic Suggestion : Script for comparing the performance of advanced Natural Language Processing (NLP) models in processing text related to ethics in Agile user stories.
+Tags: Large Language Models (LLM), LLM Fine Tuning, Sentiment Analysis, Performance, Natural Language Processing (NLP), Python Scripting
+
+
+SUAVE (Self-adaptive Underwater Autonomous Vehicle Exemplar) : Full system enhanced for optimizing the performance of SUAVE. This project consists of requirement engineering, software design & architecture, underwater vehicle coding, rule-based machine learning, and automated testing.
+Tags: ROS2-Powered AUV, Adaptive Underwater Vehicle, Adaptive Strategies for Water Visibility, Introducing Battery Level Uncertainties, Rule-Based, Adaptation Mechanism, Data Learning for Adaptive Rule Adjustments, Online learning, Adaptive System, Rule-Based Machine, Learning Automatize Vehicle, Automatic Vehicle
+
+  
+
+UPISAS : Unified Python interface for self-adaptive systems exemplars. Forked from GitHub, and then we enhanced it for supporting systems that run locally. This system is beneficial for automating testing adaptive systems like SUAVE.
+Tags: Automate testing, adaptive system
+
+
+AI-Game for Pancake Quiz and Congklak : The project focuses on developing a modular infrastructure to run simulations of agents using various heuristic search algorithms, applied to selected puzzles and games.
+Tags: AI Game, Testing, Pancake, Congklak, Breath-First Search (BFS), A*, Search AI Agents, Minimax, Alpha-Beta Pruning, Brute Force
+
+ 
+
+Congklak Game with Reinforcement Learning : Enhancement of Congklak game, where reinforcement learning was added to the AI-agents.
+Tags: AI Game, Testing, Congklak, AI Agents, Minimax, Alpha-Beta Pruning, Brute Force, Reinforcement Learning, Q-Learning
+
+ 
+
+Cooking Chef Maze Runner : Employing reinforcement learning to help AI agents navigate inside a maze and fulfill tasks.
+Tags: Maze, Cooking Chef, AI Agent, AI-Game, Reinforcement Learning
+
+ 
+
+IT Sustainability Theory : Theory about why sustainability is important in tech and in general. Also, there are several tips how to achieve it.
+Tags: GreenIT, Sustainable Tech, Theory, Code Pattern
+
+
+Smart Stay Santiago : This project includes solution ideas and simple software architecture for Smart Stay Santiago de Compostela. A digital platform designed to enhance the experience of tourists while ensuring compliance with local accommodation regulations.
+Tags: Ideation, Sustainability Framework, Sustainability Assessment, Sustainability Software Design, Software Architecture
+
+ 
+
+History of Cyber Crime: The pace of innovation in information technology has been astonishing. But, along with the growth of information technology, there are illicit activities facilitated by IT, growing as well. We call it cyber crime. This research studies the history of cybercrime, how it evolved from pranks into cyberwar.
+Tags: Theory, History, CyberCrime
+
+
+East Africa Agriculture Supply Chain : East Africa’s supply chains often resemble a complex web with weak links. To address this, we developed a suite of innovative business services to strengthen these fragile connections, promoting agricultural sustainability and prosperity. This solution includes a comprehensive software architecture design.
+Tags: Design Decision, Software Decision, Software Architecture, UML, Ideation, Requirement Engineering, Supply Chain, ERP
+
+
+Agri Assist : This project includes solution ideas and simple software architecture for solving agricultural issues in Ethiopia. It includes Problem Definition, Market & Competitor Analysis, Prototyping, Business Canvas, Impact Analysis, and Elevator Pitch.
+Tags: Ideation, Software Architecture, Agriculture in Ethiopia, Agricultural Commercialization, Supply Chain Management, Farming Optimization, Farming Information System, Disease Control Detection, Software Architecture for Agriculture, Agricultural Innovation Food Security
+
+ 
+ 
+Theory and Comparison of Parking Sensor for Smart Parking : This research is a comprehensive comparison between sensors available in the market for smart parking. We discuss why smart parking and those sensors are important, along with what to consider when making functional requirements regarding sensors in smart parking.
+Tags: Theory, Smart Parking, Sensor, System Requirement
+
+
+Auto-generated template from SQLLite for Tech Career : Tools for helping tech professionals generate their portfolio by just listing it in a database. It can generate resume timelines (work/education/publication), certifications, awards, and projects. Built using PHP, SQLite, HTML, and Bootstrap CSS.
+Tags: Template, PHP, CSS, HTML, Free template, Open Source
+
+
+Automatic Landmark-Based Photo Sorting : Automatic Landmark-Based Photo Sorting is a Python tool that automatically categorizes your travel photos using GPS metadata. It sorts images into folders by city and landmark, making it easy to organize and retrieve your photos without manual sorting.
+Tags: Python Scripting, Python, Open Source, Google API, Geopositioning
+
+
+Close All Docker with Python : Script for terminating all docker running in Windows. This tool can help system administrators who have Docker running and stuck in their server.
+Tags: Docker, Python Scripting
+
+An Empirical Study on the Energy Efficiency of Collaborative Software : Using Data Science (Python & R) for comparing energy usage & carbon emission between collaborative software (Teams, Google Meet, Zoom, Skype, Element, Rocket.Chat)
