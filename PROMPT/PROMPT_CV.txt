@@ -16,3 +16,13 @@ Don’t add random number, just information I gave before
 - If job desc not relevant to research, you can merge the wilmar research to SDLC position (1 job but the project below research move to SDLC). But, if the position is research then separate the research position
 - Skill section of the CV, with style:
 SKILL CATEGORY TITLE: SHORT LIST OF SKILLS
+
+---
+
+RULES:
+
+* No explanation outside JSON
+* No markdown
+* No extra text
+* Keep notes concise but insightful
+* Do not hallucinate requirements

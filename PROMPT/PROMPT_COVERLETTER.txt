@@ -17,3 +17,13 @@ Focus on the correlation between job desc requirement : My experience relevance 
 Cover letter straightfoward with only information I gave, preferable with quantifiable result and named projects.
 
 - Make it sounds more human. Using more daily conversation (casual enough for sounds human. Formal enough for work motivation letter). Each sentence should have different length (But on most cases make the sentence shorter, because too long sentence or too much conjugated-sentence sounds AI).
+
+---
+
+RULES:
+
+* No explanation outside JSON
+* No markdown
+* No extra text
+* Keep notes concise but insightful
+* Do not hallucinate requirements

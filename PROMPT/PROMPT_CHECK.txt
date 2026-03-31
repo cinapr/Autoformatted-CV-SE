@@ -51,21 +51,6 @@ EVALUATION CRITERIA:
 
 ---
 
-OUTPUT STRICTLY IN JSON:
-
-{
-"match_score": number,
-"is_suitable": boolean,
-"visa_sponsorship": "Yes / No / Not mentioned",
-"language_fit": "OK / Not OK",
-"notes": ["string"],
-"missing_requirements": ["string"],
-"mandatory_documents": ["string"],
-"cover_letter_required": boolean
-}
-
----
-
 RULES:
 
 * No explanation outside JSON
