@@ -45,4 +45,5 @@ def generate_docx_cv(template_path, json_path, output_path):
         remove_section(doc, "OPEN-SOURCE PROJECTS")
 
     doc.save(output_path)
+    print(f"✅ CV generated: {output_path}")
 

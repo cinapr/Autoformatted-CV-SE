@@ -87,16 +87,55 @@ CV_SCHEMA = {
     "required": ["summary", "experience", "tech", "skills", "education"]
 }
 
-COVERLETTER_SCHEMA = {}
+COVERLETTER_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "job_title": {"type": "string"},
+        "company_name": {"type": "string"},
+        "company_location": {"type": "string"},
+        "hiring_manager_name": {"type": "string"},
+        "company_address": {"type": "string"},
+        "letter_date": {"type": "string"},
+        "body": {
+            "type": "array",
+            "items": {"type": "string"}
+        }
+    },
+    "required": ["job_title", "company_name", "company_location", "body"]
+}
 
-def validate_json(data, type):
+CHECK_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "match_score": {"type": "number"},
+        "is_suitable": {"type": "boolean"},
+        "visa_sponsorship": {"type": "string"},
+        "language_fit": {"type": "string"},
+        "notes": {"type": "array", "items": {"type": "string"}},
+        "missing_requirements": {"type": "array", "items": {"type": "string"}},
+        "mandatory_documents": {"type": "array", "items": {"type": "string"}},
+        "cover_letter_required": {"type": "boolean"}
+    },
+    "required": [
+        "match_score",
+        "is_suitable",
+        "mandatory_documents",
+        "cover_letter_required"
+    ]
+}
+
+def validate_json(data, schema_type):
     try:
-        if (type=="CV"):
+        if (schema_type=="CV"):
             validate(instance=data, schema=CV_SCHEMA)
             print("✅ JSON schema valid")
             return True
-        elif (type=="COVERLETTER"):
+        elif (schema_type=="COVERLETTER"):
             validate(instance=data, schema=COVERLETTER_SCHEMA)
+            print("✅ JSON schema valid")
+            return True
+        elif schema_type == "CHECK":
+            validate(instance=data, schema=CHECK_SCHEMA)
             print("✅ JSON schema valid")
             return True
         else:

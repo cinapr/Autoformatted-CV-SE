@@ -2,12 +2,16 @@ import sys
 import json
 import pyperclip
 
-from Controllers.Utilities.mock_gpt import simulate_gpt
 from Controllers.Utilities.gpt_call import generate_json
 from Controllers.Utilities.get_linkedin import scrape_job_description
 from Controllers.Utilities.utility import load_file, save_text
 from Controllers.generate_docx_cv import generate_docx_cv
 
+from Controllers.Utilities.mock_gpt import (
+    simulate_check,
+    simulate_cv,
+    simulate_cover_letter
+)
 
 # ------------------------
 # MAIN
@@ -104,7 +108,7 @@ Note:
 
     # 4. CALL GPT
     # data = generate_json(full_prompt)
-    data = simulate_gpt()
+    data = simulate_check() #TEMP
 
     # 5. SAVE JSON
     with open(json_path, "w", encoding="utf-8") as f:

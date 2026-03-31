@@ -111,12 +111,32 @@ def insert_projects(doc, projects):
 # ----------------------------------------
 # REPLACE SINGLE VALUE (FOCUS/THESIS TITLE)
 # -----------------------------------------
-def replace_single_value(doc, placeholder, value):
+def replace_single_value(doc, placeholder, value, direct_replace=False):
     for para in doc.paragraphs:
         if placeholder in para.text:
-            for run in para.runs:
-                if placeholder in run.text:
-                    run.text = run.text.replace(placeholder, value)
+            if (direct_replace == True):
+                #para.text = para.text.replace(placeholder, value) # IT WILL REMOVE ALL FONT-FORMATTING
+
+                full_text = "".join(run.text for run in para.runs)
+
+                if placeholder in full_text:
+                    new_text = full_text.replace(placeholder, value)
+
+                    # keep first run formatting
+                    first_run = para.runs[0]
+                    first_run.text = new_text
+
+                    # clear remaining runs
+                    for run in para.runs[1:]:
+                        run.text = ""
+                        
+            else:
+                for run in para.runs:
+                    if placeholder in run.text:
+                        run.text = run.text.replace(placeholder, value)
+            
+
+            
 
 # ------------------------
 # REMOVE OPTIONAL SECTION

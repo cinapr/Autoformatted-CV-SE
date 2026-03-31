@@ -2,21 +2,11 @@ import sys
 import json
 from docx import Document
 from copy import deepcopy
-import json
 
 from Controllers.Utilities.schema import validate_json
-from Controllers.Utilities.get_linkedin import scrape_job_description
 from Controllers.Utilities.generate_docx import (
-    replace_single_value, 
-    insert_experience, 
-    insert_projects, 
+    replace_single_value,
     remove_section
-)
-
-from Controllers.Utilities.utility import (
-    set_text,
-    insert_simple_bullets,
-    insert_labeled_bullets
 )
 
 def generate_docx_coverletter(template_path, json_path, output_path):
@@ -26,33 +16,50 @@ def generate_docx_coverletter(template_path, json_path, output_path):
         data = json.load(f)
 
     if not validate_json(data, "COVERLETTER"):
-        print("❌ Fix JSON before generating CV")
+        print("❌ Fix JSON before generating COVER LETTER")
         return
 
-    replace_single_value(doc, "{{JOB_TITLE}}", data["jobtitle"])
-    
-    if data.get("hiringmanager"):
-        replace_single_value(doc, "{{HIRING_MANAGER_NAME}}", data["hiringmanager"])
+    # ------------------------
+    # REQUIRED FIELDS
+    # ------------------------
+    replace_single_value(doc, "{{JOB_TITLE}}", data["job_title"])
+
+    # ------------------------
+    # OPTIONAL FIELDS (use consistent snake_case)
+    # ------------------------
+    if data.get("hiring_manager_name"):
+        replace_single_value(doc, "{{HIRING_MANAGER_NAME}}", data["hiring_manager_name"])
     else:
-        remove_section(doc, "HIRING_MANAGER_NAME")
+        remove_section(doc, "{{HIRING_MANAGER_NAME}}")
 
-    if data.get("companyname"):
-        replace_single_value(doc, "{{COMPANY_NAME}}", data["companyname"])
+    if data.get("company_name"):
+        replace_single_value(doc, "{{COMPANY_NAME}}", data["company_name"], True)
     else:
-        remove_section(doc, "COMPANY_NAME")
-    
-    if data.get("companyaddress"):
-        replace_single_value(doc, "{{COMPANY_ADDRESS}}", data["companyaddress"])
+        remove_section(doc, "{{COMPANY_NAME}}")
+
+    if data.get("company_address"):
+        replace_single_value(doc, "{{COMPANY_ADDRESS}}", data["company_address"], True)
     else:
-        remove_section(doc, "COMPANY_ADDRESS")
+        remove_section(doc, "{{COMPANY_ADDRESS}}")
 
-    if data.get("companylocation"):
-        replace_single_value(doc, "{{COMPANY_LOCATION}}", data["companylocation"])
+    if data.get("company_location"):
+        replace_single_value(doc, "{{COMPANY_LOCATION}}", data["company_location"], True)
     else:
-        remove_section(doc, "COMPANY_LOCATION")
+        remove_section(doc, "{{COMPANY_LOCATION}}")
 
-    replace_single_value(doc, "{{BODY}}", data["coverletterbody"])
+    if data.get("letter_date"):
+        replace_single_value(doc, "{{LETTER_DATE}}", data["letter_date"], True)
+    else:
+        remove_section(doc, "{{LETTER_DATE}}")
 
+    # ------------------------
+    # BODY (array → paragraph)
+    # ------------------------
+    body_text = "\n\n".join(data.get("body", []))
+    replace_single_value(doc, "{{BODY}}", body_text)
 
+    # ------------------------
+    # SAVE
+    # ------------------------
     doc.save(output_path)
-
+    print(f"✅ Cover letter generated: {output_path}")
