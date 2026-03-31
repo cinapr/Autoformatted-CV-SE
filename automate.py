@@ -60,7 +60,7 @@ python automate.py "https://www.linkedin.com/jobs/view/1234567890/" "scrapLinked
     job_desc = scrape_job_description(url)
 
     # save raw scrape
-    save_text(scrap_path, job_desc)
+    save_text(scrap_path, url + "\n\n" + job_desc)
 
 
 
@@ -232,8 +232,8 @@ Note:
 
     # 3. GENERATE COVER LETTER
     # 3A. ASK WHETHER WANT TO GENERATE COVER LETTER?
+    print("\n\n====================================\n")
     if check_data.get("cover_letter_required"):
-      print("\n\n====================================\n")
       print("⚠️ Cover letter is MANDATORY")
 
     cont = input("Do you want to generate cover letter? (y/n): ")
