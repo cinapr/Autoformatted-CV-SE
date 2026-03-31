@@ -2,28 +2,12 @@ import sys
 import json
 import pyperclip
 
-#from openai import OpenAI
+from Controllers.Utilities.mock_gpt import simulate_gpt
+from Controllers.Utilities.gpt_call import generate_json
+from Controllers.Utilities.get_linkedin import scrape_job_description
+from Controllers.Utilities.utility import load_file, save_text
+from Controllers.generate_docx_cv import generate_docx_cv
 
-from get_linkedin import scrape_job_description
-from generate_docx_cv import generate_docx_cv
-from utility import load_file, save_text
-
-# ------------------------
-# GPT CALL
-# ------------------------
-def generate_json(prompt):
-    client = OpenAI(api_key="YOUR_API_KEY")
-
-    response = client.chat.completions.create(
-        model="gpt-4.1",
-        messages=[
-            {"role": "system", "content": "You are an ATS CV generator. Output JSON only."},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.2
-    )
-
-    return json.loads(response.choices[0].message.content)
 
 # ------------------------
 # MAIN
@@ -119,7 +103,8 @@ Note:
     print("GPT Prompt generated")
 
     # 4. CALL GPT
-    data = generate_json(full_prompt)
+    # data = generate_json(full_prompt)
+    data = simulate_gpt()
 
     # 5. SAVE JSON
     with open(json_path, "w", encoding="utf-8") as f:

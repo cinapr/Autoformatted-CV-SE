@@ -4,15 +4,16 @@ import json
 from docx import Document
 from copy import deepcopy
 
-from get_linkedin import scrape_job_description
-from generate_docx import (
+from Controllers.Utilities.schema import validate_json
+from Controllers.Utilities.get_linkedin import scrape_job_description
+from Controllers.Utilities.generate_docx import (
     replace_single_value, 
     insert_experience, 
     insert_projects, 
     remove_section
 )
 
-from utility import (
+from Controllers.Utilities.utility import (
     set_text,
     insert_simple_bullets,
     insert_labeled_bullets
@@ -23,6 +24,10 @@ def generate_docx_cv(template_path, json_path, output_path):
 
     with open(json_path, encoding="utf-8") as f:
         data = json.load(f)
+
+    if not validate_json(data, "CV"):
+        print("❌ Fix JSON before generating CV")
+        return
 
     insert_simple_bullets(doc, "{{SUMMARY_ITEM}}", data["summary"])
     insert_labeled_bullets(doc, "{{TECH_TITLE}}", data["tech"])

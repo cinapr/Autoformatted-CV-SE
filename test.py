@@ -2,9 +2,11 @@ import sys
 import json
 import pyperclip
 
-from get_linkedin import scrape_job_description
-from generate_docx_cv import generate_docx_cv
-from utility import load_file, save_text
+from Controllers.Utilities.get_linkedin import scrape_job_description
+from Controllers.Utilities.utility import load_file, save_text
+from Controllers.generate_docx_cv import generate_docx_cv
+
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # ------------------------
 # MAIN

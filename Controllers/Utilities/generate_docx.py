@@ -3,7 +3,7 @@ import json
 from docx import Document
 from copy import deepcopy
 
-from utility import (
+from Controllers.Utilities.utility import (
     set_text,
     insert_simple_bullets,
     insert_labeled_bullets
