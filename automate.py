@@ -3,15 +3,18 @@ import sys
 import json
 import pyperclip
 
+from Controllers.Utilities.schema import validate_json
 from Controllers.Utilities.gpt_call import generate_json
 from Controllers.Utilities.get_linkedin import scrape_job_description
 from Controllers.Utilities.utility import load_file, save_text
+from Controllers.fix_cv_schema import fix_cv_schema
 from Controllers.generate_docx_cv import generate_docx_cv
 from Controllers.generate_docx_coverletter import generate_docx_coverletter
 from Controllers.Utilities.mock_gpt import (
     simulate_check,
     simulate_cv,
-    simulate_cover_letter
+    simulate_cover_letter,
+    manual_gpt
 )
 
 
@@ -64,16 +67,23 @@ python automate.py "https://www.linkedin.com/jobs/view/1234567890/" "scrapLinked
     # 2. CHECK SUITABILITY
     print("1. 🔍 Checking job suitability...")
 
-    #2A. LOAD FILES
-    profile = load_file(profile_path)
-    prompt = load_file(prompt_check_path)
-
+    #2A. LOAD INFORMATION TO BUILD PROMPT
+    profile = load_file(profile_path) #LOAD FILES
+    prompt = load_file(prompt_check_path) #LOAD FILES
+    print("\nOptional: Add your own suitability note (press ENTER to skip)")
+    suitability_note = input("👉 Your note: ")
+    suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
+    
     #2B. BUILT GPT PROMPT
     check_prompt = f"""
 Evaluate job suitability.
 
 [INSTRUCTION]
 {prompt}
+
+----------------------
+
+{suitability_note}
 
 ----------------------
 
@@ -102,7 +112,8 @@ OUTPUT STRICTLY IN JSON:
 
     #2C. CALL GPT
     # check_data = generate_json(check_prompt)
-    check_data = simulate_check() #TEMP
+    # check_data = simulate_check() #TEMP
+    check_data = manual_gpt(check_prompt) #TEMP
     #validate_json(check_data, "CHECK")
 
     #2D. PRINT REVIEW
@@ -132,14 +143,23 @@ OUTPUT STRICTLY IN JSON:
         print("❌ Stopped.")
         return
     
-    # 3B. LOAD FILES
-    prompt = load_file(prompt_cv_path)
+    # 3B. LOAD INFORMATION TO BUILT PROMPT
+    prompt = load_file(prompt_cv_path) #TAKE FROM PROMPT FILES
+
+    print("\nOptional: Add your own suitability note (press ENTER to skip)")
+    suitability_note = input("👉 Your note: ")
+    suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
+
 
     # 3C. BUILD GPT PROMPT
     cv_prompt = f"""
 
 [INSTRUCTION]
 {prompt}
+
+----------------------
+
+{suitability_note}
 
 ----------------------
 
@@ -195,7 +215,9 @@ Note:
 
     # 3D. CALL GPT
     # data = generate_json(cv_prompt)
-    cv_data = simulate_cv() #TEMP
+    #cv_data = simulate_cv() #TEMP
+    cv_data = manual_gpt(cv_prompt) #TEMP
+    cv_data = fix_cv_schema(cv_data)
     #validate_json(data, "CV")
 
     # 3E. SAVE JSON
@@ -217,13 +239,21 @@ Note:
     cont = input("Do you want to generate cover letter? (y/n): ")
 
     if cont.lower() == "y":
-        # 4B. LOAD FILES
-        prompt = load_file(prompt_cl_path)
+        # 4B. LOAD INFORMATION TO BUILD PROMPT
+        prompt = load_file(prompt_cl_path) #LOAD FILES
+        print("\nOptional: Add your own suitability note (press ENTER to skip)")
+        suitability_note = input("👉 Your note: ")
+        suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
+
 
         # 4C. BUILD GPT PROMPT
         cover_prompt = f"""
 [INSTRUCTION]
 {prompt}
+
+----------------------
+
+{suitability_note}
 
 ----------------------
 
@@ -254,7 +284,8 @@ OUTPUT STRICTLY IN JSON:
 
         # 3D. CALL GPT
         # cover_data = generate_json(cover_prompt)
-        cover_data = simulate_cover_letter() #TEMP
+        #cover_data = simulate_cover_letter() #TEMP
+        cover_data = manual_gpt(cover_prompt) #TEMP
         #validate_json(cover_data, "COVERLETTER")
 
         # 3E. SAVE JSON

@@ -1,4 +1,46 @@
 import json
+import pyperclip
+
+
+# --------------------------------------------------
+# SIMULATE GPT BY MANUALLY COPY PASTE TO THE BROWSER
+# --------------------------------------------------
+def manual_gpt(prompt):
+    print("\n📋 Prompt copied to clipboard.")
+    pyperclip.copy(prompt)
+
+    print("""
+========================================
+👉 Paste this prompt into ChatGPT (browser)
+
+👉 Copy the JSON result
+
+👉 Come back here and paste it below
+========================================
+""")
+
+    print("Paste GPT JSON response, then press ENTER twice:\n")
+
+    # multi-line input
+    lines = []
+    while True:
+        line = input()
+        if line == "":
+            break
+        lines.append(line)
+
+    raw_text = "\n".join(lines)
+
+    try:
+        data = json.loads(raw_text)
+        print("✅ JSON parsed successfully")
+        return data
+    except json.JSONDecodeError as e:
+        print("❌ Invalid JSON. Fix and try again.")
+        print("Error:", e)
+        return manual_gpt(prompt)  # retry
+    
+
 
 # ------------------------
 # SIMULATE CHECK (JOB FIT)

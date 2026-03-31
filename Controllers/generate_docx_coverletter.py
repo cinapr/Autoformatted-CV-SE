@@ -30,27 +30,27 @@ def generate_docx_coverletter(template_path, json_path, output_path):
     if data.get("hiring_manager_name"):
         replace_single_value(doc, "{{HIRING_MANAGER_NAME}}", data["hiring_manager_name"])
     else:
-        remove_section(doc, "{{HIRING_MANAGER_NAME}}")
+        replace_single_value(doc, "{{HIRING_MANAGER_NAME}}", "")
 
     if data.get("company_name"):
-        replace_single_value(doc, "{{COMPANY_NAME}}", data["company_name"], True)
+        replace_single_value(doc, "{{COMPANY_NAME}}", data["company_name"])
     else:
-        remove_section(doc, "{{COMPANY_NAME}}")
+        replace_single_value(doc, "{{COMPANY_NAME}}", "")
 
     if data.get("company_address"):
-        replace_single_value(doc, "{{COMPANY_ADDRESS}}", data["company_address"], True)
+        replace_single_value(doc, "{{COMPANY_ADDRESS}}", data["company_address"])
     else:
-        remove_section(doc, "{{COMPANY_ADDRESS}}")
+        replace_single_value(doc, "{{COMPANY_ADDRESS}}", "")
 
     if data.get("company_location"):
-        replace_single_value(doc, "{{COMPANY_LOCATION}}", data["company_location"], True)
+        replace_single_value(doc, "{{COMPANY_LOCATION}}", data["company_location"])
     else:
-        remove_section(doc, "{{COMPANY_LOCATION}}")
+        replace_single_value(doc, "{{COMPANY_LOCATION}}", "")
 
     if data.get("letter_date"):
-        replace_single_value(doc, "{{LETTER_DATE}}", data["letter_date"], True)
+        replace_single_value(doc, "{{LETTER_DATE}}", data["letter_date"])
     else:
-        remove_section(doc, "{{LETTER_DATE}}")
+        replace_single_value(doc, "{{LETTER_DATE}}", "")
 
     # ------------------------
     # BODY (array → paragraph)

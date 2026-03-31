@@ -148,3 +148,4 @@ def validate_json(data, schema_type):
         print("Error:", e.message)
         print("Path:", list(e.path))
         return False
+    
