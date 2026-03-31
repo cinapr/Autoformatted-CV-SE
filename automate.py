@@ -72,7 +72,8 @@ python automate.py "https://www.linkedin.com/jobs/view/1234567890/" "scrapLinked
     prompt = load_file(prompt_check_path) #LOAD FILES
     print("\nOptional: Add your own suitability note (press ENTER to skip)")
     suitability_note = input("👉 Your note: ")
-    suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
+    if suitability_note:
+      suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
     
     #2B. BUILT GPT PROMPT
     check_prompt = f"""
@@ -148,7 +149,8 @@ OUTPUT STRICTLY IN JSON:
 
     print("\nOptional: Add your own suitability note (press ENTER to skip)")
     suitability_note = input("👉 Your note: ")
-    suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
+    if suitability_note:
+      suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
 
 
     # 3C. BUILD GPT PROMPT
@@ -243,7 +245,8 @@ Note:
         prompt = load_file(prompt_cl_path) #LOAD FILES
         print("\nOptional: Add your own suitability note (press ENTER to skip)")
         suitability_note = input("👉 Your note: ")
-        suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
+        if suitability_note:
+          suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
 
 
         # 4C. BUILD GPT PROMPT
