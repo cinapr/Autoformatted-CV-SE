@@ -1,0 +1,198 @@
+Education
+International Technical University	City A, Country X
+Northern Engineering Institute	City B, Country Y
+Urban Research University	City C, Country Z
+M.Sc. (Joint International Program) Sustainable Software Systems	September 2022-August 2024
+- Awarded a fully funded international scholarship for a multi-institution master’s program.
+- Focus: Sustainable systems, resource efficiency, and responsible technology practices.
+- Courses: Sustainable IT, Software Project Execution, System Design, IoT Systems.
+- Thesis: Prototype of a Decision-Support Tool for Ethical Considerations in Software Requirement Analysis
+
+National Technology University	City D, Country W
+Bachelor of Computer Science	July 2013-January 2018
+
+
+
+Professional Experience
+Global Digital Solutions Group	City D, Country W
+IT Consultant (Senior)	July 2018 – May 2022
+Worked in a rotational role across multiple areas including analysis, design, development, integration, testing, documentation, deployment, and support.
+Industries: logistics, manufacturing, agriculture, finance, and general enterprise systems.
+Region: Multi-country involvement across different operational environments.
+Projects included: operational systems, reporting platforms, automation tools, and compliance-related systems.
+
+IT Consulting, System Design, Analysis, & R&D
+- Participated in iterative development cycles within collaborative team environments.
+- Contributed to designing systems with consideration for scalability and maintainability.
+- Supported implementation of control mechanisms to reduce process irregularities.
+- Assisted in process improvements to enhance system efficiency.
+- Explored and applied emerging technologies in controlled scenarios.
+- Contributed to defining system features based on general business and technical considerations.
+
+Vendor & Stakeholder Management
+- Interpreted general stakeholder inputs into structured system-related outputs.
+- Ensured solutions loosely aligned with operational and compliance expectations.
+- Assisted in handling agreement-related documents and system change discussions.
+- Facilitated communication across technical and non-technical roles.
+- Reviewed external solutions for general suitability and integration feasibility.
+
+Full-Stack Software Engineering, Software Development & System Integration
+- Contributed to backend-oriented components using a mix of common programming approaches.
+- Supported development of data-driven systems for routine processing and reporting.
+- Assisted in connecting subsystems into unified workflows.
+- Created simple monitoring or visualization interfaces.
+- Participated in validation and troubleshooting of system integrations.
+
+Technical Documentation
+- Produced general system documentation, guides, and supporting materials.
+- Created structured references to support system understanding and maintenance.
+- Translated technical concepts into simplified explanations for broader audiences.
+
+Quality Assurance & Testing
+- Assisted in system and user-level testing activities.
+- Verified that implemented features aligned with general expectations.
+- Provided input for improvements based on observed issues.
+
+Project Delivery & Training
+- Supported deployment of systems in controlled environments.
+- Assisted users in understanding system usage through guidance and training.
+- Participated in coordination activities to align teams during delivery phases.
+
+IT Support
+- Provided technical assistance for system-related issues.
+- Handled incident tracking and basic troubleshooting.
+- Contributed to maintaining system stability post-deployment.
+
+R&D Engineer — Automation & Systems Exploration
+Research Area: Automation, Data Processing, System Optimization, Human-System Interaction
+- Explored applied automation concepts through prototyping and small-scale experiments.
+- Contributed to defining structured approaches for experimentation.
+- Developed basic prototypes to evaluate system behavior and interaction.
+- Assisted in integrating data sources for monitoring and analysis.
+- Evaluated general system performance under varying conditions.
+
+
+
+Task with calculated result/numerical achievement:
+- Supported adoption of new systems across multiple operational environments.
+- Contributed to coordination efforts across numerous deployment instances.
+- Participated in testing activities to reduce post-deployment issues.
+- Assisted in handling multiple system change requests.
+- Contributed to improving process efficiency in system workflows.
+- Supported resolution of recurring technical issues through iterative fixes.
+- Assisted in analyzing system performance and identifying potential improvements.
+- Participated in vendor-related coordination activities.
+- Contributed to deployment of systems across distributed environments.
+
+
+
+Additional Experience
+Technology Consulting Organization	Country Y
+Intern Software Consultant	April 2023 – June 2023
+- Participated in a team developing a shared data platform concept.
+- Assisted in creating system components for data exchange.
+- Contributed to documentation, reporting, and coordination activities.
+- Supported project tracking and task organization processes.
+- Helped translate requirements into structured development inputs.
+
+
+
+Research Experience
+Innovation Research Group	City C, Country Z
+Research Contributor	November 2023 – January 2024
+- Explored relationships between stakeholders in technology adoption.
+- Analyzed general patterns in decision-making and system adoption.
+- Contributed to understanding interactions across different domains.
+
+
+
+Skills & Interests
+Technical Skills:
+- Programming/Scripting: General-purpose programming languages and database query languages
+- Tools: Development environments, database systems, issue tracking tools, and standard enterprise platforms
+- Hardware: Basic understanding of hardware-software interaction and embedded systems
+- Advanced Topics: AI concepts, data processing, and sustainability in IT
+
+Non-Technical Skills:
+- Sustainability & Ethics: General awareness of responsible technology practices
+- Methodologies & Practices: Agile approaches, iterative development, and structured problem-solving
+- Analysis & Research: Requirement interpretation, system analysis, and conceptual modeling
+- Project & Delivery: Coordination, testing support, and cross-functional collaboration
+- Support & Documentation: Technical assistance, documentation writing, and knowledge sharing
+
+Roles & Interests:
+System Analysis, Functional Analysis, Technical Consulting, Solution Design, IT Support, Digital Transformation
+
+Language:
+Language A (Native), Language B (Advanced), Language C (Intermediate)
+
+
+
+Volunteering & Leadership Activities
+Technology Support Group	City D, Country W
+Administrative Member	2015-2017
+- Assisted in administrative coordination and documentation.
+- Supported organizational processes and team activities.
+
+Teaching Assistant	2015-2017
+- Assisted in instructional activities for technical subjects.
+- Supported preparation of teaching materials and exercises.
+
+
+
+Awards
+- International Scholarship Award (Year Range)
+- Academic Recognition Award (Year)
+- Institutional Achievement Award (Year)
+- Research/Conference Recognition (Year)
+- Academic Merit Scholarship (Year)
+
+
+
+Certifications
+- Professional Certification (Year)
+- Language Proficiency Certification (Year)
+- Technical Certification (Year)
+- Additional Professional Courses (Various Years)
+
+
+
+======================
+
+Some of my notable open-source projects (TITLE - SHORT DESCRIPTION - TAGS)
+
+Sustainable System Framework
+Conceptual system design for improving efficiency and sustainability in digital platforms.
+Tags: Architecture, Sustainability, System Design
+
+Energy Usage Analysis Tool
+Tool for analyzing and comparing system resource consumption under different conditions.
+Tags: Data Analysis, Automation, Monitoring
+
+Industrial Data Platform
+Collaborative project exploring structured data exchange across organizations.
+Tags: Data Sharing, Platform, Integration
+
+Automation Framework Prototype
+Prototype system for automating evaluation processes in software development.
+Tags: Automation, AI Concepts, Framework
+
+Environmental Awareness Application
+Application concept promoting awareness of resource usage and sustainability.
+Tags: Mobile App, Awareness, Sustainability
+
+Adaptive System Experiment
+Experimental system exploring adaptive behavior in dynamic environments.
+Tags: Adaptive Systems, Simulation
+
+Game-Based AI Experiment
+Small-scale project applying basic AI techniques in game scenarios.
+Tags: AI, Simulation, Algorithms
+
+General IT Sustainability Notes
+Collection of ideas and concepts around sustainability in technology.
+Tags: Theory, Sustainability
+
+Automation Utility Scripts
+Small scripts designed to simplify routine technical tasks.
+Tags: Scripting, Utilities
