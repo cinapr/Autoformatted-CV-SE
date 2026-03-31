@@ -111,7 +111,31 @@ def insert_projects(doc, projects):
 # ----------------------------------------
 # REPLACE SINGLE VALUE (FOCUS/THESIS TITLE)
 # -----------------------------------------
-def replace_single_value(doc, placeholder, value, direct_replace=False):
+def replace_single_value(doc, placeholder, value):
+    # paragraphs
+    for para in doc.paragraphs:
+        if placeholder in para.text:
+            full_text = "".join(run.text for run in para.runs)
+            new_text = full_text.replace(placeholder, value)
+
+            para.runs[0].text = new_text
+            for run in para.runs[1:]:
+                run.text = ""
+
+    # tables
+    for table in doc.tables:
+        for row in table.rows:
+            for cell in row.cells:
+                for para in cell.paragraphs:
+                    if placeholder in para.text:
+                        full_text = "".join(run.text for run in para.runs)
+                        new_text = full_text.replace(placeholder, value)
+
+                        para.runs[0].text = new_text
+                        for run in para.runs[1:]:
+                            run.text = ""
+                            
+def replace_single_value_old(doc, placeholder, value, direct_replace=False):
     for para in doc.paragraphs:
         if placeholder in para.text:
             if (direct_replace == True):

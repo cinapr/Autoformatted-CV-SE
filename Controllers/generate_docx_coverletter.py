@@ -30,7 +30,7 @@ def generate_docx_coverletter(template_path, json_path, output_path):
     if data.get("hiring_manager_name"):
         replace_single_value(doc, "{{HIRING_MANAGER_NAME}}", data["hiring_manager_name"])
     else:
-        replace_single_value(doc, "{{HIRING_MANAGER_NAME}}", "")
+        replace_single_value(doc, "{{HIRING_MANAGER_NAME}}", "Hiring Manager")
 
     if data.get("company_name"):
         replace_single_value(doc, "{{COMPANY_NAME}}", data["company_name"])
