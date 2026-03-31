@@ -23,7 +23,17 @@ CV_SCHEMA = {
                     },
                     "projects": {
                         "type": "array",
-                        "items": {"type": "string"}
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "title": {"type": "string"},
+                                "bullets": {
+                                    "type": "array",
+                                    "items": {"type": "string"}
+                                }
+                            },
+                            "required": ["title", "bullets"]
+                        }
                     }
                 },
                 "required": ["title", "company", "location", "time", "bullets"]

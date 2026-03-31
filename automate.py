@@ -3,7 +3,12 @@ import sys
 import json
 import pyperclip
 
-from Controllers.Utilities.schema import validate_json
+from Controllers.Utilities.schema import (
+    validate_json,
+    CV_SCHEMA,
+    COVERLETTER_SCHEMA,
+    CHECK_SCHEMA
+)
 from Controllers.Utilities.gpt_call import generate_json
 from Controllers.Utilities.get_linkedin import scrape_job_description
 from Controllers.Utilities.utility import load_file, save_text
@@ -166,37 +171,7 @@ OUTPUT STRICTLY IN JSON:
 ----------------------
 
 OUTPUT STRICTLY IN JSON:
-{{
-  "summary": [],
-  "experience": [
-    {{
-      "title": "",
-      "company": "",
-      "location": "",
-      "time": "MONTH YEAR – MONTH YEAR",
-      "bullets": [],
-      "projects": [] /*optional for project NDA under this company*/
-    }}
-  ],
-  "projects": [],
-  "tech": [
-    {{
-        "title": "",
-        "value": ""
-    }}
-  ],
-  "skills": [
-    {{
-        "title": "",
-        "value": ""
-    }}
-  ],
-  "awards": [],
-  "education": {{
-    "focus": "",
-    "thesis": ""
-  }}
-}}
+{CV_SCHEMA}
 
 Note:
 "projects" inside "experience" is optional and only used if there is NDA projects done under that company.
