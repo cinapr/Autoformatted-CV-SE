@@ -94,16 +94,7 @@ Evaluate job suitability.
 ----------------------
 
 OUTPUT STRICTLY IN JSON:
-{{
-  "match_score": 0-100,
-  "is_suitable": true/false,
-  "visa_sponsorship": "Yes/No/Not mentioned",
-  "language_fit": "OK/Not OK",
-  "notes": [],
-  "missing_requirements": [],
-  "mandatory_documents": [],
-  "cover_letter_required": true/false
-}}
+{CHECK_SCHEMA}
 
 ------
 
@@ -236,15 +227,7 @@ Note:
 ----------------------
 
 OUTPUT STRICTLY IN JSON:
-{{
-  "job_title": "",
-  "company_name": "",
-  "company_location": "",
-  "hiring_manager_name": "",
-  "company_address": "",
-  "letter_date": "",
-  "body": []
-}}
+{COVERLETTER_SCHEMA}
 
 ----------------------
 

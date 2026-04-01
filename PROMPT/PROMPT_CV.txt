@@ -26,3 +26,5 @@ RULES:
 * No extra text
 * Keep notes concise but insightful
 * Do not hallucinate requirements
+* Do NOT generate placeholder text such as "titlebullets", "lorem ipsum", "TBD", or similar.
+* Only include "projects" if there are real, concrete items. If no project exists, omit the "projects" field entirely. Do NOT generate placeholder text such as "titlebullets", "lorem ipsum", "TBD", or similar.

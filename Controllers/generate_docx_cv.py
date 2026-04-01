@@ -29,15 +29,22 @@ def generate_docx_cv(template_path, json_path, output_path):
         print("❌ Fix JSON before generating CV")
         return
 
+    # EDUCATION
+    replace_single_value(doc, "{{FOCUS_REPLACE}}", data["education"]["focus"])
+    replace_single_value(doc, "{{THESIS_REPLACE}}", data["education"]["thesis"])
+
+    # OTHER SECTIONS
     insert_simple_bullets(doc, "{{SUMMARY_ITEM}}", data["summary"])
     insert_labeled_bullets(doc, "{{TECH_TITLE}}", data["tech"])
     insert_labeled_bullets(doc, "{{SKILL_TITLE}}", data["skills"])
-    insert_simple_bullets(doc, "{{AWARDS_BULLET}}", data["awards"])
-
+        
     insert_experience(doc, data["experience"])
-
-    replace_single_value(doc, "{{FOCUS_REPLACE}}", data["education"]["focus"])
-    replace_single_value(doc, "{{THESIS_REPLACE}}", data["education"]["thesis"])
+    
+    # NOT MANDATORY
+    if "awards" in data and data["awards"]:
+        insert_simple_bullets(doc, "{{AWARDS_BULLET}}", data["awards"])
+    else:
+        remove_section(doc, "{{AWARDS_BULLET}}", "AWARDS & CERTIFICATIONS")
 
     if data.get("projects"):
         insert_projects(doc, data["projects"])
