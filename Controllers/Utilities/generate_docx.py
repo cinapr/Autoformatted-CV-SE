@@ -15,6 +15,91 @@ from Controllers.Utilities.utility import (
 def insert_experience(doc, experiences):
     paras = doc.paragraphs
 
+    title_template = None
+    bullet_template = None
+    project_title_template = None
+    project_bullet_template = None
+    block_index = None
+
+    # खोज placeholders instead of fixed positions
+    for i, para in enumerate(paras):
+        text = para.text
+
+        if "{{EXPERIENCE_BLOCK}}" in text:
+            block_index = i
+
+        elif "{{EXPERIENCE_TITLE_ITEM}}" in text:
+            title_template = para
+
+        elif "{{EXP_ITEM}}" in text:
+            bullet_template = para
+
+        elif "Projects:" in text:
+            project_title_template = para
+
+        elif "{{EXP_PROJECT_ITEM}}" in text:
+            project_bullet_template = para
+
+    if block_index is None:
+        return
+
+    parent = paras[block_index]._element.getparent()
+    idx = parent.index(paras[block_index]._element)
+
+    for exp in experiences:
+        # Title
+        title_text = f"{exp['title']} | {exp['company']} | {exp['location']} | {exp['time']}"
+        title_p = deepcopy(title_template)
+        set_text(title_p, title_text)
+        parent.insert(idx, title_p._element)
+        idx += 1
+
+        # Bullets
+        for b in exp.get("bullets", []):
+            if not b.strip():
+                continue
+            bullet_p = deepcopy(bullet_template)
+            set_text(bullet_p, b)
+            parent.insert(idx, bullet_p._element)
+            idx += 1
+
+        # Projects (cleaned)
+        projects = [
+            p for p in exp.get("projects", [])
+            if p and p.lower() not in ["titlebullets", "n/a", "none"]
+        ]
+
+        if projects:
+            proj_title = deepcopy(project_title_template)
+            parent.insert(idx, proj_title._element)
+            idx += 1
+
+            for pb in projects:
+                proj_b = deepcopy(project_bullet_template)
+                set_text(proj_b, pb)
+                parent.insert(idx, proj_b._element)
+                idx += 1
+
+        # Spacer
+        spacer = deepcopy(title_template)
+        set_text(spacer, "")
+        parent.insert(idx, spacer._element)
+        idx += 1
+
+    # Cleanup templates
+    for t in [
+        paras[block_index],
+        title_template,
+        bullet_template,
+        project_title_template,
+        project_bullet_template
+    ]:
+        if t is not None:
+            parent.remove(t._element)
+            
+def insert_experience_old(doc, experiences):
+    paras = doc.paragraphs
+
     for i, para in enumerate(paras):
         if "{{EXPERIENCE_BLOCK}}" in para.text:
 
@@ -165,7 +250,7 @@ def replace_single_value_old(doc, placeholder, value, direct_replace=False):
 # ------------------------
 # REMOVE OPTIONAL SECTION
 # ------------------------
-def remove_section(doc, section_title):
+def remove_section_project(doc, section_title):
     remove = False
     for para in doc.paragraphs:
         if section_title in para.text:
@@ -177,3 +262,36 @@ def remove_section(doc, section_title):
 
         if remove and "EDUCATION" in para.text:
             break
+
+def remove_section(doc, section_title):
+    import traceback, sys
+    try:
+        paras = doc.paragraphs
+        start_idx = None
+
+        # find section title
+        for i, p in enumerate(paras):
+            if section_title in p.text:
+                start_idx = i
+                break
+
+        if start_idx is None:
+            return
+
+        # find end of section (next divider line or empty line block)
+        end_idx = len(paras)
+        for i in range(start_idx + 1, len(paras)):
+            if "____" in paras[i].text:  # your section separator
+                end_idx = i
+                break
+
+        # delete paragraphs in range
+        for i in range(end_idx - 1, start_idx - 1, -1):
+            p = paras[i]._element
+            p.getparent().remove(p)
+
+    except Exception as e:
+        tb = traceback.extract_tb(sys.exc_info()[2])[-1]
+        print(f"[ERROR] remove_section failed")
+        print(f"Line: {tb.lineno} | File: {tb.filename}")
+        print(f"Error: {str(e)}")

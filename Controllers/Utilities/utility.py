@@ -24,13 +24,21 @@ def save_text(path, text):
 # Preserve formatting
 # ------------------------
 def set_text(paragraph, text):
-    runs = paragraph.runs
-    if runs:
-        runs[0].text = text
-        for r in runs[1:]:
-            r.text = ""
-    else:
-        paragraph.add_run(text)
+    try:
+        runs = paragraph.runs
+        if runs:
+            runs[0].text = text
+            for r in runs[1:]:
+                r.text = ""
+        else:
+            paragraph.add_run(text)
+
+    except Exception as e:
+        print("❌ ERROR in set_text")
+        print(f"Paragraph object: {paragraph}")
+        print(f"Text to insert: {text}")
+        print(f"Error: {str(e)}")
+        raise
 
 
 # ------------------------

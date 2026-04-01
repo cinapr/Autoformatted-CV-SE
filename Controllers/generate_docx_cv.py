@@ -41,10 +41,14 @@ def generate_docx_cv(template_path, json_path, output_path):
     insert_experience(doc, data["experience"])
     
     # NOT MANDATORY
-    if "awards" in data and data["awards"]:
-        insert_simple_bullets(doc, "{{AWARDS_BULLET}}", data["awards"])
+    if "awards" not in data or not data["awards"]:
+        remove_section(doc, "AWARDS & CERTIFICATIONS")
     else:
-        remove_section(doc, "{{AWARDS_BULLET}}", "AWARDS & CERTIFICATIONS")
+        insert_simple_bullets(doc, "{{AWARDS_BULLET}}", data["awards"])
+    #if "awards" in data and data["awards"]:
+    #    insert_simple_bullets(doc, "{{AWARDS_BULLET}}", data["awards"])
+    #else:
+    #    remove_section(doc, "{{AWARDS_BULLET}}", "AWARDS & CERTIFICATIONS")
 
     if data.get("projects"):
         insert_projects(doc, data["projects"])
