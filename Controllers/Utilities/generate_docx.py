@@ -9,6 +9,20 @@ from Controllers.Utilities.utility import (
     insert_labeled_bullets
 )
 
+
+# ------------------------
+# DEFINED SECTION HEADERS
+# ------------------------
+SECTION_HEADERS = [
+    "PROFESSIONAL SUMMARY",
+    "INDUSTRY EXPERIENCE",
+    "TECHNICAL STACKS",
+    "RELEVANT SKILLS",
+    "OPEN-SOURCE PROJECTS",
+    "EDUCATION",
+    "AWARDS & CERTIFICATIONS"
+]
+
 # ------------------------
 # EXPERIENCE BLOCK
 # ------------------------
@@ -263,7 +277,7 @@ def remove_section_project(doc, section_title):
         if remove and "EDUCATION" in para.text:
             break
 
-def remove_section(doc, section_title):
+def remove_section_old(doc, section_title):
     import traceback, sys
     try:
         paras = doc.paragraphs
@@ -295,3 +309,63 @@ def remove_section(doc, section_title):
         print(f"[ERROR] remove_section failed")
         print(f"Line: {tb.lineno} | File: {tb.filename}")
         print(f"Error: {str(e)}")
+
+
+
+def remove_section(doc, section_title):
+    import traceback, sys
+
+    SECTION_HEADERS = [
+        "PROFESSIONAL SUMMARY",
+        "INDUSTRY EXPERIENCE",
+        "TECHNICAL STACKS",
+        "RELEVANT SKILLS",
+        "OPEN-SOURCE PROJECTS",
+        "EDUCATION",
+        "AWARDS & CERTIFICATIONS"
+    ]
+
+    try:
+        paras = doc.paragraphs
+        start_idx = None
+
+        # 1. find start
+        for i, p in enumerate(paras):
+            if section_title in p.text:
+                start_idx = i
+                break
+
+        if start_idx is None:
+            print(f"[INFO] Section not found: {section_title}")
+            return
+
+        # 2. find next section header ONLY (ignore separators completely)
+        end_idx = len(paras)
+        for i in range(start_idx + 1, len(paras)):
+            text = paras[i].text.strip()
+
+            # skip empty lines
+            if not text:
+                continue
+
+            # 🚨 stop at next section header
+            if any(header in text for header in SECTION_HEADERS if header != section_title):
+                end_idx = i
+                break
+
+        print(f"[DEBUG] Removing '{section_title}' from {start_idx} to {end_idx}")
+
+        # 3. delete only this section
+        for i in range(end_idx - 1, start_idx - 1, -1):
+            p = paras[i]._element
+            p.getparent().remove(p)
+
+    except Exception as e:
+        tb = traceback.extract_tb(sys.exc_info()[2])[-1]
+        print(f"[ERROR] remove_section failed")
+        print(f"Line: {tb.lineno} | File: {tb.filename}")
+        print(f"Error: {str(e)}")
+
+
+
+        

@@ -50,10 +50,13 @@ def generate_docx_cv(template_path, json_path, output_path):
     #else:
     #    remove_section(doc, "{{AWARDS_BULLET}}", "AWARDS & CERTIFICATIONS")
 
-    if data.get("projects"):
-        insert_projects(doc, data["projects"])
-    else:
+    #if data.get("projects"):
+    #    insert_projects(doc, data["projects"])
+    #else:
+    if "projects" not in data or not data["projects"]:
         remove_section(doc, "OPEN-SOURCE PROJECTS")
+    else:
+        insert_projects(doc, data["projects"])
 
     doc.save(output_path)
     print(f"✅ CV generated: {output_path}")
