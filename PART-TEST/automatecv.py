@@ -24,7 +24,7 @@ def main():
         python automatecv.py <URL> <TEMPLATE.docx> <PROMPT.txt> <profile.txt> <scrap.txt> <data.json> <output.docx>
 
         Example:
-        python automatecv.py "https://linkedin.com/job/..." "TEMPLATE_CV.docx" "PROMPT_CV.txt" "profile.txt" "scrap.txt" "data.json" "CVOUTPUT.docx"
+        python automatecv.py "https://linkedin.com/job/..." "TEMPLATE_CV.docx" "PROMPT_CV.txt" "profile.txt" "scrap.txt" "data.json" "data_cv.json" "CVOUTPUT.docx"
         """)
         return
 
@@ -35,7 +35,8 @@ def main():
     profile_path = sys.argv[4]
     scrap_path = sys.argv[5]
     json_path = sys.argv[6]
-    output_docx = sys.argv[7]
+    json_path_cv = sys.argv[7]
+    output_docx = sys.argv[8]
 
     # 1. SCRAPE LINKEDIN
     job_desc = scrape_job_description(url)
@@ -115,7 +116,7 @@ Note:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
     # 6. GENERATE DOCX
-    generate_docx_cv(template_path, json_path, output_docx)
+    generate_docx_cv(template_path, json_path_cv, output_docx)
 
     print("✅ CV generated successfully!")
 
