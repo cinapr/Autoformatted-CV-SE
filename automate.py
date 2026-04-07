@@ -46,7 +46,7 @@ def main():
 
         output_docx = sys.argv[11]
 
-    elif len(sys.args) == 1:
+    elif len(sys.argv) == 1:
         url = input("URL: ") or ""
         if (url == ""):
            return
@@ -69,7 +69,7 @@ def main():
         output_docx = job_desc + ".docx"
     
     else:
-        print("""
+        print("""ERROR REQUIRED ARGUMENTS WERE NOT GIVEN!!
 Usage:
 python automate.py <URL> <scrap.txt> <profile.txt> <PROMPTCHECK.txt> <TEMPLATECV.docx> <PROMPTCV.txt> <data_cv.json> <TEMPLATECOVERLETTER.docx> <PROMPTCOVERLETTER.txt> <data_coverletter.json> <output.docx>
 
