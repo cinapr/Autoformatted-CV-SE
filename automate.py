@@ -28,7 +28,47 @@ from Controllers.Utilities.mock_gpt import (
 # ------------------------
 def main():
     #IF SOME PARAMETER NOT PASSED
-    if len(sys.argv) < 12:
+    if len(sys.argv) == 12:
+        # CLI arguments
+        url = sys.argv[1]
+        scrap_path = sys.argv[2]
+        profile_path = sys.argv[3]
+
+        prompt_check_path = sys.argv[4]
+
+        template_cv_path = sys.argv[5]
+        prompt_cv_path = sys.argv[6]
+        data_cv_path = sys.argv[7]
+
+        template_cl_path = sys.argv[8]
+        prompt_cl_path = sys.argv[9]
+        data_cl_path = sys.argv[10]
+
+        output_docx = sys.argv[11]
+
+    elif len(sys.args) == 1:
+        url = input("URL: ") or ""
+        if (url == ""):
+           return
+        
+        job_desc = input("Job Title without space or special character: ") or ""
+
+        scrap_path = input("Linkedin Scrap Txt Path: ") or "scrapLinkedin_" + job_desc + ".txt"
+        profile_path = input("Profile Path: ") or ".\PROMPT\PROFILE.txt"
+
+        prompt_check_path = input("Prompt Check Path: ") or ".\PROMPT\PROMPT_CHECK.txt"
+
+        template_cv_path = input("Prompt Template CV Path: ") or ".\TEMPLATE\TEMPLATE_CV.docx"
+        prompt_cv_path = input("Prompt CV: ") or ".\PROMPT\PROMPT_CV.txt" 
+        data_cv_path = input("Prompt CV JSON Output Path: ") or "data_cv.json"
+
+        template_cl_path = input("Prompt Template COVER LETTER Path: ") or ".\TEMPLATE\TEMPLATE_COVERLETTER.docx"
+        prompt_cl_path = input("Prompt COVER LETTER: ") or ".\PROMPT\PROMPT_COVERLETTER.txt" 
+        data_cl_path = input("Prompt COVER LETTER JSON Output Path: ") or "data_cl.json"
+
+        output_docx = job_desc + ".docx"
+    
+    else:
         print("""
 Usage:
 python automate.py <URL> <scrap.txt> <profile.txt> <PROMPTCHECK.txt> <TEMPLATECV.docx> <PROMPTCV.txt> <data_cv.json> <TEMPLATECOVERLETTER.docx> <PROMPTCOVERLETTER.txt> <data_coverletter.json> <output.docx>
@@ -37,23 +77,7 @@ Example:
 python automate.py "https://www.linkedin.com/jobs/view/1234567890/" "scrapLinkedin.txt" ".\PROMPT\PROFILE.txt" ".\PROMPT\PROMPT_CHECK.txt" ".\TEMPLATE\TEMPLATE_CV.docx" ".\PROMPT\PROMPT_CV.txt" "data_cv.json" ".\TEMPLATE\TEMPLATE_COVERLETTER.docx" ".\PROMPT\PROMPT_COVERLETTER.txt" "data_cl.json" "output.docx"
         """)
         return
-
-    # CLI arguments
-    url = sys.argv[1]
-    scrap_path = sys.argv[2]
-    profile_path = sys.argv[3]
-
-    prompt_check_path = sys.argv[4]
-
-    template_cv_path = sys.argv[5]
-    prompt_cv_path = sys.argv[6]
-    data_cv_path = sys.argv[7]
-
-    template_cl_path = sys.argv[8]
-    prompt_cl_path = sys.argv[9]
-    data_cl_path = sys.argv[10]
-
-    output_docx = sys.argv[11]
+    
     #SPLIT THE output into output_cv and output_coverletter
     base, ext = os.path.splitext(output_docx)
     if ext == "":
@@ -61,7 +85,17 @@ python automate.py "https://www.linkedin.com/jobs/view/1234567890/" "scrapLinked
     output_cv_docx = f"{base}_cv{ext}"
     output_cl_docx = f"{base}_coverletter{ext}"
 
-    # 1. SCRAPE LINKEDIN
+    run_automation(url, scrap_path, profile_path, prompt_check_path, 
+                   template_cv_path, prompt_cv_path, data_cv_path,
+                   template_cl_path, prompt_cl_path, data_cl_path, 
+                   output_cv_docx, output_cl_docx)
+
+
+def run_automation (url, scrap_path, profile_path, prompt_check_path, 
+                   template_cv_path, prompt_cv_path, data_cv_path,
+                   template_cl_path, prompt_cl_path, data_cl_path, 
+                   output_cv_docx, output_cl_docx):
+        # 1. SCRAPE LINKEDIN
     job_desc = scrape_job_description(url)
 
     # save raw scrape
