@@ -91,3 +91,18 @@ def insert_labeled_bullets(doc, placeholder, items):
 
             parent.remove(para._element)
             break
+
+
+
+def multi_line_input():
+    # multi-line input
+    lines = []
+    while True:
+        line = input()
+        if line == "":
+            break
+        lines.append(line)
+
+    inputline = "\n".join(lines)
+
+    return inputline
