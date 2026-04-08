@@ -83,7 +83,7 @@ def scrape_job_description_manual():
 
     location_text = input("Location: ")
 
-    print = input("Job Description:\n")
+    print("Job Description:\n")
     # multi-line input
     lines = []
     while True:
