@@ -28,7 +28,7 @@ from Controllers.Utilities.mock_gpt import (
 # ------------------------
 def main():
     #IF SOME PARAMETER NOT PASSED
-    if len(sys.argv) == 12:
+    if len(sys.argv) == 13:
         # CLI arguments
         url = sys.argv[1]
         scrap_path = sys.argv[2]
