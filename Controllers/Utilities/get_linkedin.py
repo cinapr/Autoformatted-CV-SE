@@ -83,7 +83,16 @@ def scrape_job_description_manual():
 
     location_text = input("Location: ")
 
-    desc = input("Job Description: ")
+    print = input("Job Description:\n")
+    # multi-line input
+    lines = []
+    while True:
+        line = input()
+        if line == "":
+            break
+        lines.append(line)
+
+    desc = "\n".join(lines)
     job_desc = clean_text(desc.get_text(separator="\n"))
 
     # limit size for GPT
