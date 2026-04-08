@@ -94,15 +94,32 @@ def insert_labeled_bullets(doc, placeholder, items):
 
 
 
-def multi_line_input():
-    # multi-line input
+def multi_line_input_enter():
+    print("Enter text (press Enter on an empty line to finish):")
     lines = []
     while True:
         line = input()
-        if line == "":
+        if not line:
             break
         lines.append(line)
+    text = "\n".join(lines)
 
-    inputline = "\n".join(lines)
+    return text
 
-    return inputline
+
+def multi_line_input_INPUTFINISH():
+    print("Enter your text. Type 'INPUTFINISH' on a new line to save:")
+
+    lines = []
+    while True:
+        try:
+            line = input()
+            if line == 'INPUTFINISH':
+                break
+            lines.append(line)
+        except EOFError:
+            break
+
+    # Join lines, excluding the INPUTFINISH line
+    final_text = '\n'.join(lines)
+    return final_text

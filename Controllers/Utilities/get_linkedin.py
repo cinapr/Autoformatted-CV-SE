@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
+from Controllers.Utilities.utility import multi_line_input_INPUTFINISH
+
 def clean_text(text):
     lines = text.split("\n")
     cleaned = []
@@ -84,16 +86,7 @@ def scrape_job_description_manual():
     location_text = input("Location: ")
 
     print("Job Description:\n")
-    # multi-line input
-    lines = []
-    while True:
-        line = input()
-        if line == "":
-            break
-        lines.append(line)
-
-    desc = "\n".join(lines)
-    job_desc = clean_text(desc.get_text(separator="\n"))
+    job_desc = multi_line_input_INPUTFINISH()
 
     # limit size for GPT
     job_desc = job_desc[:5000]
