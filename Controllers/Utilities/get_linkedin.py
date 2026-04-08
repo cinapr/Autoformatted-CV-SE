@@ -75,7 +75,35 @@ JOB ADS:
     return result
 
 
+
+def scrape_job_description_manual():
+    job_title = input("Job Title: ")
+
+    company_name = input("Company Name: ")
+
+    location_text = input("Location: ")
+
+    desc = input("Job Description: ")
+    job_desc = clean_text(desc.get_text(separator="\n"))
+
+    # limit size for GPT
+    job_desc = job_desc[:5000]
+
+    # -------------------------
+    # FINAL FORMAT
+    # -------------------------
+    result = f"""COMPANY NAME: {company_name}
+JOB TITLE: {job_title}
+LOCATION: {location_text}
+
+JOB ADS:
+{job_desc}
+"""
+
+    return result
+
+
 # test
 if __name__ == "__main__":
-    url = "https://www.linkedin.com/jobs/view/4365130519/"
+    url = "https://www.linkedin.com/jobs/view/1234567890/"
     print(scrape_job_description(url))

@@ -10,7 +10,7 @@ from Controllers.Utilities.schema import (
     CHECK_SCHEMA
 )
 from Controllers.Utilities.gpt_call import generate_json
-from Controllers.Utilities.get_linkedin import scrape_job_description
+from Controllers.Utilities.get_linkedin import scrape_job_description, scrape_job_description_manual
 from Controllers.Utilities.utility import load_file, save_text
 from Controllers.fix_cv_schema import fix_cv_schema
 from Controllers.generate_docx_cv import generate_docx_cv
@@ -46,6 +46,9 @@ def main():
 
         output_docx = sys.argv[11]
 
+        from_linkedin = sys.argv[12]
+        from_linkedin_bool = from_linkedin.lower().strip() in ("y", "yes", "true", "t", "1")
+
     elif len(sys.argv) == 1:
         url = input("URL: ") or ""
         if (url == ""):
@@ -67,14 +70,17 @@ def main():
         data_cl_path = input("Prompt COVER LETTER JSON Output Path: ") or "data_cl.json"
 
         output_docx = job_desc + ".docx"
+
+        from_linkedin = input("From Linkedin (y/n): ").lower().strip()
+        from_linkedin_bool = from_linkedin in ("y", "yes", "true", "t", "1")
     
     else:
         print("""ERROR REQUIRED ARGUMENTS WERE NOT GIVEN!!
 Usage:
-python automate.py <URL> <scrap.txt> <profile.txt> <PROMPTCHECK.txt> <TEMPLATECV.docx> <PROMPTCV.txt> <data_cv.json> <TEMPLATECOVERLETTER.docx> <PROMPTCOVERLETTER.txt> <data_coverletter.json> <output.docx>
+python automate.py <URL> <scrap.txt> <profile.txt> <PROMPTCHECK.txt> <TEMPLATECV.docx> <PROMPTCV.txt> <data_cv.json> <TEMPLATECOVERLETTER.docx> <PROMPTCOVERLETTER.txt> <data_coverletter.json> <output.docx> <FROM LINKEDIN (y/n)>
 
 Example:
-python automate.py "https://www.linkedin.com/jobs/view/1234567890/" "scrapLinkedin.txt" ".\PROMPT\PROFILE.txt" ".\PROMPT\PROMPT_CHECK.txt" ".\TEMPLATE\TEMPLATE_CV.docx" ".\PROMPT\PROMPT_CV.txt" "data_cv.json" ".\TEMPLATE\TEMPLATE_COVERLETTER.docx" ".\PROMPT\PROMPT_COVERLETTER.txt" "data_cl.json" "output.docx"
+python automate.py "https://www.linkedin.com/jobs/view/1234567890/" "scrapLinkedin.txt" ".\PROMPT\PROFILE.txt" ".\PROMPT\PROMPT_CHECK.txt" ".\TEMPLATE\TEMPLATE_CV.docx" ".\PROMPT\PROMPT_CV.txt" "data_cv.json" ".\TEMPLATE\TEMPLATE_COVERLETTER.docx" ".\PROMPT\PROMPT_COVERLETTER.txt" "data_cl.json" "output.docx" "y"
         """)
         return
     
@@ -88,15 +94,18 @@ python automate.py "https://www.linkedin.com/jobs/view/1234567890/" "scrapLinked
     run_automation(url, scrap_path, profile_path, prompt_check_path, 
                    template_cv_path, prompt_cv_path, data_cv_path,
                    template_cl_path, prompt_cl_path, data_cl_path, 
-                   output_cv_docx, output_cl_docx)
+                   output_cv_docx, output_cl_docx, from_linkedin_bool)
 
 
 def run_automation (url, scrap_path, profile_path, prompt_check_path, 
                    template_cv_path, prompt_cv_path, data_cv_path,
                    template_cl_path, prompt_cl_path, data_cl_path, 
-                   output_cv_docx, output_cl_docx):
+                   output_cv_docx, output_cl_docx, from_linkedin_bool = True):
         # 1. SCRAPE LINKEDIN
-    job_desc = scrape_job_description(url)
+    if (from_linkedin_bool):
+       job_desc = scrape_job_description(url)
+    else:
+       job_desc = scrape_job_description_manual()
 
     # save raw scrape
     save_text(scrap_path, url + "\n\n" + job_desc)
