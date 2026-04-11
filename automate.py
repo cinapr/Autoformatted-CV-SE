@@ -72,7 +72,7 @@ def main():
         output_docx = job_desc + ".docx"
 
         from_linkedin = input("From Linkedin (y/n): ").lower().strip()
-        from_linkedin_bool = from_linkedin in ("y", "yes", "true", "t", "1")
+        from_linkedin_bool = from_linkedin.strip().lower() in ("", "y", "yes", "true", "t", "1")
     
     else:
         print("""ERROR REQUIRED ARGUMENTS WERE NOT GIVEN!!
