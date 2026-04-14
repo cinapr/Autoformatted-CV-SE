@@ -123,3 +123,27 @@ def multi_line_input_INPUTFINISH():
     # Join lines, excluding the INPUTFINISH line
     final_text = '\n'.join(lines)
     return final_text
+
+
+
+def multi_line_input_INPUTFINISH_skipENTER(question_header):
+    print(question_header)
+    print("""
+    - Press ENTER to skip
+    - Or type anything to start (end with INPUTFINISH)
+    """)
+
+    lines = []
+    first_line = input()
+
+    if first_line.strip() != "":
+        if first_line.strip().upper() != "INPUTFINISH":
+            lines.append(first_line)
+
+            while True:
+                line = input()
+                if line.strip().upper() == "INPUTFINISH":
+                    break
+                lines.append(line)
+
+    extra_questions = "\n".join(lines)

@@ -10,8 +10,8 @@ from Controllers.Utilities.schema import (
     CHECK_SCHEMA
 )
 from Controllers.Utilities.gpt_call import generate_json
-from Controllers.Utilities.get_linkedin import scrape_job_description, scrape_job_description_manual
-from Controllers.Utilities.utility import load_file, save_text
+from Controllers.Utilities.get_linkedin import scrape_job_description, scrape_job_description_manual, appendLinkedinResult
+from Controllers.Utilities.utility import load_file, save_text, multi_line_input_INPUTFINISH_skipENTER
 from Controllers.fix_cv_schema import fix_cv_schema
 from Controllers.generate_docx_cv import generate_docx_cv
 from Controllers.generate_docx_coverletter import generate_docx_coverletter
@@ -88,8 +88,8 @@ python automate.py "https://www.linkedin.com/jobs/view/1234567890/" "scrapLinked
     base, ext = os.path.splitext(output_docx)
     if ext == "":
       ext = ".docx" #EXTENSION OUTPUT ALWAYS DOCX
-    output_cv_docx = f"{base}_cv{ext}"
-    output_cl_docx = f"{base}_coverletter{ext}"
+    output_cv_docx = f"{base}_RESUME{ext}"
+    output_cl_docx = f"{base}_COVERLETTER{ext}"
 
     run_automation(url, scrap_path, profile_path, prompt_check_path, 
                    template_cv_path, prompt_cv_path, data_cv_path,
@@ -119,9 +119,23 @@ def run_automation (url, scrap_path, profile_path, prompt_check_path,
     profile = load_file(profile_path) #LOAD FILES
     prompt = load_file(prompt_check_path) #LOAD FILES
     print("\nOptional: Add your own suitability note (press ENTER to skip)")
-    suitability_note = input("👉 Your note: ")
+    suitability_note = multi_line_input_INPUTFINISH_skipENTER("👉 Your note: ")
     if suitability_note:
       suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
+    
+    print("\nOptional: Add extra questions (press ENTER to skip)")
+    extra_questions = multi_line_input_INPUTFINISH_skipENTER("👉 Your questions: ")
+    extra_section = ""
+    if extra_questions:
+        extra_section = f"""
+----------------------
+
+[ADDITIONAL QUESTIONS]
+{extra_questions}
+
+Answer them and include results in JSON under "additional_answers".
+        """
+    
     
     #2B. BUILT GPT PROMPT
     check_prompt = f"""
@@ -138,6 +152,9 @@ Evaluate job suitability.
 
 OUTPUT STRICTLY IN JSON:
 {CHECK_SCHEMA}
+
+If additional questions exist, include:
+"additional_answers": [{{"question": "...", "answer": "..."}}]
 
 ------
 
@@ -157,21 +174,31 @@ OUTPUT STRICTLY IN JSON:
     #validate_json(check_data, "CHECK")
 
     #2D. PRINT REVIEW
-    print("\n===== JOB CHECK RESULT =====")
-    print(f"Match Score        : {check_data['match_score']}%")
-    print(f"Suitable           : {check_data['is_suitable']}")
-    print(f"Visa               : {check_data['visa_sponsorship']}")
-    print(f"Language Fit       : {check_data['language_fit']}")
+    result_text = "\n===== JOB CHECK RESULT ====="
+    result_text += f"Match Score        : {check_data['match_score']}%"
+    result_text += f"Suitable           : {check_data['is_suitable']}"
+    result_text += f"Visa               : {check_data['visa_sponsorship']}"
+    result_text += f"Language Fit       : {check_data['language_fit']}"
 
-    print("\nMissing Requirements:")
+    result_text += "\nMissing Requirements:"
     for m in check_data.get("missing_requirements", []):
-        print(f"- {m}")
+        result_text += f"- {m}"
 
-    print("\nMandatory Documents:")
+    result_text += "\nMandatory Documents:"
     for d in check_data.get("mandatory_documents", []):
-        print(f"- {d}")
+        result_text += f"- {d}"
 
-    print("\n============================\n")
+    if check_data.get("additional_answers"):
+        result_text += "\nAdditional Answers:\n"
+        for qa in check_data["additional_answers"]:
+            result_text += f"Q: {qa['question']}\n"
+            result_text += f"A: {qa['answer']}\n\n"
+
+    result_text += "\n============================\n"
+
+    print(result_text)
+    appendLinkedinResult(result_text)
+
 
 
 
@@ -187,7 +214,7 @@ OUTPUT STRICTLY IN JSON:
     prompt = load_file(prompt_cv_path) #TAKE FROM PROMPT FILES
 
     print("\nOptional: Add your own suitability note (press ENTER to skip)")
-    suitability_note = input("👉 Your note: ")
+    suitability_note = multi_line_input_INPUTFINISH_skipENTER("👉 Your note: ")
     if suitability_note:
       suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
 
@@ -253,7 +280,7 @@ Note:
         # 4B. LOAD INFORMATION TO BUILD PROMPT
         prompt = load_file(prompt_cl_path) #LOAD FILES
         print("\nOptional: Add your own suitability note (press ENTER to skip)")
-        suitability_note = input("👉 Your note: ")
+        suitability_note = multi_line_input_INPUTFINISH_skipENTER("👉 Your note: ")
         if suitability_note:
           suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
 

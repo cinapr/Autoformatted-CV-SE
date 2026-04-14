@@ -114,7 +114,16 @@ CHECK_SCHEMA = {
         "notes": {"type": "array", "items": {"type": "string"}},
         "missing_requirements": {"type": "array", "items": {"type": "string"}},
         "mandatory_documents": {"type": "array", "items": {"type": "string"}},
-        "cover_letter_required": {"type": "boolean"}
+        "cover_letter_required": {"type": "boolean"},
+        "additional_answers": {
+            "type": "array", "items": {
+                "type": "object",
+                "properties": {
+                    "question": {"type": "string"},
+                    "answer": {"type": "string"}
+                }
+            }
+        }
     },
     "required": [
         "match_score",

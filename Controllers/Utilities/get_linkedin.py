@@ -1,4 +1,5 @@
 import requests
+import json
 from bs4 import BeautifulSoup
 
 from Controllers.Utilities.utility import multi_line_input_INPUTFINISH
@@ -21,6 +22,16 @@ def clean_text(text):
         cleaned.append(line)
 
     return "\n".join(cleaned)
+
+
+
+def appendLinkedinResult(scrap_path, check_data, result_text):
+    with open(scrap_path, "a", encoding="utf-8") as f:
+        f.write("\n\n===== RAW JSON =====\n")
+        f.write(json.dumps(check_data, indent=2, ensure_ascii=False))
+        f.write("\n\n")
+        f.write(result_text)
+
 
 
 def scrape_job_description(url):
