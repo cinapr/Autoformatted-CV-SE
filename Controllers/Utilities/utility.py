@@ -132,7 +132,8 @@ def multi_line_input_INPUTFINISH_skipENTER(question_header):
     - Press ENTER to skip
     - Or type anything to start (end with INPUTFINISH)
     """)
-
+    
+    extra_questions = ""
     lines = []
     first_line = input()
 
@@ -147,3 +148,5 @@ def multi_line_input_INPUTFINISH_skipENTER(question_header):
                 lines.append(line)
 
     extra_questions = "\n".join(lines)
+
+    return extra_questions

@@ -119,6 +119,7 @@ def run_automation (url, scrap_path, profile_path, prompt_check_path,
     profile = load_file(profile_path) #LOAD FILES
     prompt = load_file(prompt_check_path) #LOAD FILES
     print("\nOptional: Add your own suitability note (press ENTER to skip)")
+    suitability_note = ""
     suitability_note = multi_line_input_INPUTFINISH_skipENTER("👉 Your note: ")
     if suitability_note:
       suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
@@ -128,12 +129,17 @@ def run_automation (url, scrap_path, profile_path, prompt_check_path,
     extra_section = ""
     if extra_questions:
         extra_section = f"""
+
+If additional questions exist, include:
+"additional_answers": [{{"question": "...", "answer": "..."}}]
+
 ----------------------
 
 [ADDITIONAL QUESTIONS]
 {extra_questions}
 
 Answer them and include results in JSON under "additional_answers".
+
         """
     
     
@@ -153,10 +159,9 @@ Evaluate job suitability.
 OUTPUT STRICTLY IN JSON:
 {CHECK_SCHEMA}
 
-If additional questions exist, include:
-"additional_answers": [{{"question": "...", "answer": "..."}}]
+{extra_section}
 
-------
+------------------------
 
 [JOB DESCRIPTION]
 {job_desc}
@@ -175,18 +180,18 @@ If additional questions exist, include:
 
     #2D. PRINT REVIEW
     result_text = "\n===== JOB CHECK RESULT ====="
-    result_text += f"Match Score        : {check_data['match_score']}%"
-    result_text += f"Suitable           : {check_data['is_suitable']}"
-    result_text += f"Visa               : {check_data['visa_sponsorship']}"
-    result_text += f"Language Fit       : {check_data['language_fit']}"
+    result_text += f"Match Score        : {check_data['match_score']}%" + "\n"
+    result_text += f"Suitable           : {check_data['is_suitable']}" + "\n"
+    result_text += f"Visa               : {check_data['visa_sponsorship']}" + "\n"
+    result_text += f"Language Fit       : {check_data['language_fit']}" + "\n"
 
-    result_text += "\nMissing Requirements:"
+    result_text += "\nMissing Requirements: \n"
     for m in check_data.get("missing_requirements", []):
-        result_text += f"- {m}"
+        result_text += f"- {m}" + "\n"
 
-    result_text += "\nMandatory Documents:"
+    result_text += "\nMandatory Documents:\n"
     for d in check_data.get("mandatory_documents", []):
-        result_text += f"- {d}"
+        result_text += f"- {d}" + "\n"
 
     if check_data.get("additional_answers"):
         result_text += "\nAdditional Answers:\n"
@@ -197,7 +202,7 @@ If additional questions exist, include:
     result_text += "\n============================\n"
 
     print(result_text)
-    appendLinkedinResult(result_text)
+    appendLinkedinResult(scrap_path, check_data, result_text)
 
 
 
@@ -214,6 +219,7 @@ If additional questions exist, include:
     prompt = load_file(prompt_cv_path) #TAKE FROM PROMPT FILES
 
     print("\nOptional: Add your own suitability note (press ENTER to skip)")
+    suitability_note = ""
     suitability_note = multi_line_input_INPUTFINISH_skipENTER("👉 Your note: ")
     if suitability_note:
       suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note
@@ -280,6 +286,7 @@ Note:
         # 4B. LOAD INFORMATION TO BUILD PROMPT
         prompt = load_file(prompt_cl_path) #LOAD FILES
         print("\nOptional: Add your own suitability note (press ENTER to skip)")
+        suitability_note = ""
         suitability_note = multi_line_input_INPUTFINISH_skipENTER("👉 Your note: ")
         if suitability_note:
           suitability_note = "[SUITABILITY NOTE]\n\n" + suitability_note

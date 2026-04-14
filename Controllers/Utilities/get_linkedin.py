@@ -25,10 +25,10 @@ def clean_text(text):
 
 
 
-def appendLinkedinResult(scrap_path, check_data, result_text):
+def appendLinkedinResult(scrap_path, json_data, result_text):
     with open(scrap_path, "a", encoding="utf-8") as f:
         f.write("\n\n===== RAW JSON =====\n")
-        f.write(json.dumps(check_data, indent=2, ensure_ascii=False))
+        f.write(json.dumps(json_data, indent=2, ensure_ascii=False))
         f.write("\n\n")
         f.write(result_text)
 
