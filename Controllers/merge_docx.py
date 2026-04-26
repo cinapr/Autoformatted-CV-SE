@@ -36,8 +36,11 @@ def merge_documents(cv_path, cl_path, scrap_txt_path, final_output_path):
     if os.path.exists(scrap_txt_path):
         with open(scrap_txt_path, 'r', encoding='utf-8') as f:
             for line in f:
-                clean_line = clean_xml_text(line.strip())
-                doc.add_paragraph(clean_line)
+                try:
+                    doc.add_paragraph(clean_xml_text(line.strip()))
+                except Exception as e:
+                    print(f"Failed line: {line}")
+                    print(f"Exception: {e}")
 
     doc.save(final_output_path)
 
