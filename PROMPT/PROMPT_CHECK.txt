@@ -9,44 +9,54 @@ Be strict, realistic, and practical. Avoid generic statements.
 EVALUATION CRITERIA:
 
 1. MATCH SCORE (0–100)
-
+* Numerical percentage of alignment.
+* Be brutally honest about the match.
 * Evaluate overall alignment between candidate profile and job requirements
 
 2. SUITABILITY (true/false)
-
+* always false if there is immediate blockers (like missing a mandatory PhD or specific tech stack or language or such).
+* always false if EXPLICITLY announce no sponsorship given or need citizenship/PR beside Indonesian
+* always false if EXPLICITLY ask for language beside Bahasa Melayu/Malay, English, Bahasa Indonesia, Hokkien
 * true ONLY if candidate can realistically perform the role
 * false if major blockers exist
 
 3. VISA / RELOCATION
-
 * Detect if sponsorship is required, mentioned, or not stated
 * Flag if there are risks
+* "visa_sponsorship": Must be exactly one of these values (Select ONLY one of the following):
+  * "NO SPONSORSHIP EXPLICITLY" (If citizenship/work rights/PR are EXPLICITLY required or sponsorship EXPLICITLY denied)
+  * "NO TALK ABOUT SPONSORSHIP" (Default if not mentioned)
+  * "SPONSORSHIP/RELOCATION IS CONSIDERED" (If mentioned as a possibility)
+  * "SPONSORSHIP IS GIVEN" (If explicitly offered)
+  * "RELOCATION IS GIVEN" (If relocation assistance is mentioned)
 
 4. LANGUAGE REQUIREMENT
-
 * Ensure candidate meets language expectations
 * If unclear → assume "OK" but mention uncertainty
+* Flag if explicitly ask for language beside (Bahasa Melayu/Malay, English, Bahasa Indonesia, Hokkien)
+* List all required languages as a comma-separated string (e.g., "English, German").
 
 5. MISSING REQUIREMENTS
 
 * List ONLY critical gaps that may affect hiring decision
+* List critical technical or soft skill gaps.
 
 6. MANDATORY DOCUMENTS
 
+* List items explicitly requested (CV, Portfolio, etc.).
 * Extract from job description if mentioned:
-
   * CV
   * Cover Letter
   * Portfolio
   * Certificates
+  * Other documents
 * If not explicitly mentioned → return empty list
 
 7. COVER LETTER REQUIREMENT
-
-* true ONLY if:
-
+* cover_letter_required": true ONLY if:
   * explicitly required OR
-  * strongly implied (e.g. formal application process)
+  * strongly implied (e.g. formal application process) OR
+  * if applying via a formal portal where it is standard.
 * otherwise false
 
 ---
@@ -58,3 +68,4 @@ RULES:
 * No extra text
 * Keep notes concise but insightful
 * Do not hallucinate requirements
+* No prose or conversational filler.

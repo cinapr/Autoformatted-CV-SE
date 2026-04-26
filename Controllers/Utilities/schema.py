@@ -109,7 +109,16 @@ CHECK_SCHEMA = {
     "properties": {
         "match_score": {"type": "number"},
         "is_suitable": {"type": "boolean"},
-        "visa_sponsorship": {"type": "string"},
+        "visa_sponsorship": {
+            "type": "string",
+            "enum": [
+                "NO SPONSORSHIP EXPLICITLY",
+                "NO TALK ABOUT SPONSORSHIP",
+                "SPONSORSHIP/RELOCATION IS CONSIDERED",
+                "SPONSORSHIP IS GIVEN",
+                "RELOCATION IS GIVEN"
+            ]
+        },
         "language_fit": {"type": "string"},
         "notes": {"type": "array", "items": {"type": "string"}},
         "missing_requirements": {"type": "array", "items": {"type": "string"}},
@@ -128,6 +137,8 @@ CHECK_SCHEMA = {
     "required": [
         "match_score",
         "is_suitable",
+        "visa_sponsorship",
+        "language_fit",
         "mandatory_documents",
         "cover_letter_required"
     ]

@@ -25,7 +25,7 @@ Cover letter straightfoward with only information I gave, preferable with quanti
 RULES:
 
 * No explanation outside JSON
-* No markdown
-* No extra text
+    * No markdown
+    * No extra text
 * Keep notes concise but insightful
 * Do not hallucinate requirements

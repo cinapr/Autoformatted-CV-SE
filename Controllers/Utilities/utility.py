@@ -1,6 +1,7 @@
 # utility.py
 import sys
 import json
+import re
 from docx import Document
 from copy import deepcopy
 
@@ -11,6 +12,32 @@ from copy import deepcopy
 def load_file(path):
     with open(path, encoding="utf-8") as f:
         return f.read()
+    
+
+
+# ------------------------
+# Clean Text
+# ------------------------
+def clean_xml_text(text):
+    # Remove ANSI escape sequences (like \x1b[91m)
+    text = re.sub(r'\x1b\[[0-9;]*m', '', text)
+
+    # Remove NULL bytes and invalid XML chars
+    text = re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F]', '', text)
+    
+    # Remove other non-XML-safe control chars
+    text = re.sub(r'[^\x09\x0A\x0D\x20-\x7E\u00A0-\uFFFF]', '', text)
+    
+    return text
+
+def clean_dict(data):
+    if isinstance(data, dict):
+        return {k: clean_dict(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [clean_dict(v) for v in data]
+    elif isinstance(data, str):
+        return clean_xml_text(data)
+    return data
 
 
 # ------------------------
