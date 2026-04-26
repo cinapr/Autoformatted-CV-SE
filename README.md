@@ -34,6 +34,14 @@ project/
 
 ---
 
+## INSTALL
+
+### Pip
+
+```
+pip install docxcompose
+```
+
 
 ## ▶️ How to Run
 

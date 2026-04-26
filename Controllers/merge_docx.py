@@ -1,45 +1,44 @@
 import os
+import re
 from docx import Document
+from docxcompose.composer import Composer
+from docx.enum.section import WD_SECTION
 
 from Controllers.Utilities.utility import load_file, save_text, multi_line_input_INPUTFINISH_skipENTER, clean_xml_text, clean_dict
 
 def merge_documents(cv_path, cl_path, scrap_txt_path, final_output_path):
-    """
-    Merges CV, Cover Letter, and Scrap Text into one .docx file
-    using Word sections.
-    """
-    # Create the master document
-    master_doc = Document()
 
-    # 1. ADD RESUME
-    if os.path.exists(cv_path):
-        sub_doc = Document(cv_path)
-        for element in sub_doc.element.body:
-            master_doc.element.body.append(element)
-    
-    # Add Section Break for Cover Letter
-    master_doc.add_section()
+    # ------------------------
+    # 1. MERGE CV + COVER LETTER (STRICT PRESERVATION)
+    # ------------------------
+    master = Document(cv_path)
+    composer = Composer(master)
 
-    # 2. ADD COVER LETTER
     if os.path.exists(cl_path):
-        sub_doc = Document(cl_path)
-        for element in sub_doc.element.body:
-            master_doc.element.body.append(element)
+        composer.append(Document(cl_path))
 
-    # Add Section Break for LinkedIn Scrap
-    master_doc.add_section()
+    composer.save(final_output_path)
 
-    # 3. ADD LINKEDIN SCRAP (Text File)
-    master_doc.add_heading('LinkedIn Job Description & Result', level=1)
+    # ------------------------
+    # 2. ADD NEW SECTION FOR SCRAP TEXT
+    # ------------------------
+    doc = Document(final_output_path)
+
+    # IMPORTANT: create a NEW SECTION (not just page break)
+    new_section = doc.add_section(WD_SECTION.NEW_PAGE)
+
+    # Optional: normalize layout for 3rd page (safe default)
+    new_section.page_height = doc.sections[0].page_height
+    new_section.page_width = doc.sections[0].page_width
+
+    doc.add_heading('LinkedIn Job Description & Result', 1)
+
     if os.path.exists(scrap_txt_path):
         with open(scrap_txt_path, 'r', encoding='utf-8') as f:
             for line in f:
-                try:
-                    master_doc.add_paragraph(clean_xml_text(line.strip()))
-                except Exception as e:
-                    print("Failed line: " + line.strip())
-                    print(f"Exception: {e}")
+                clean_line = clean_xml_text(line.strip())
+                doc.add_paragraph(clean_line)
 
-    # Save the final merged document
-    master_doc.save(final_output_path)
-    print(f"✅ Merged document created: {final_output_path}")
+    doc.save(final_output_path)
+
+    print(f"✅ Final document created: {final_output_path}")
