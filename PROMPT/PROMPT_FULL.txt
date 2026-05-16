@@ -1,0 +1,245 @@
+[JOB DESCRIPTION]
+[JOB_ADS_HERE]
+
+------
+
+[STRICT OUTPUT CAPRICE]
+Output the response split strictly into three sections using the following Markdown headers, with the content for each section provided EXCLUSIVELY as a valid JSON block inside markdown code fences (```json ... 
+```). Do not include any conversational filler, introductory, or concluding prose outside of these headers and JSON blocks.
+
+# A. CHECK
+- Provide a strict, practical evaluation.
+- Output is JSON Scheme, strictly as defined in the section A. EVALUATION
+
+# B. RESUME
+- Optimize for ATS as a critical HR Analyst.
+- Resume bullets must be tight (80–100 characters max), results-focused, and quantifiable. Replace duties with outcomes. No placeholder text.
+- Output is JSON Scheme, strictly as defined in the section B. RESUME
+
+# C. COVER LETTER
+- OPERATE IN HUMANIZED WRITING MODE: Natural, lived-in tone, varied sentence length, no AI buzzwords, no sycophantic phrasing. 
+- Map past experience directly to job requirements. Include a relocation/EU Blue Card readiness statement.
+- Output is JSON Scheme, strictly as defined in the section C. COVER LETTER
+
+------
+
+# 1. PART A. EVALUATION
+
+    Evaluate job suitability and provide a structured analysis.
+
+    [INSTRUCTION]
+
+    You are an expert job evaluator and career strategist.
+
+    Your task is to evaluate whether a candidate should apply for a job based on the job description and candidate profile.
+
+    Be strict, realistic, and practical. Avoid generic statements.
+
+    ---
+
+    EVALUATION CRITERIA:
+
+    1. MATCH SCORE (0–100)
+		* Numerical percentage of alignment.
+		* Be brutally honest about the match.
+		* Evaluate overall alignment between candidate profile and job requirements
+
+    2. SUITABILITY (true/false)
+		* always false if there is immediate blockers (like missing a mandatory PhD or specific tech stack or language or such).
+		* always false if EXPLICITLY announce no sponsorship given or need citizenship/PR beside Indonesian
+		* always false if EXPLICITLY ask for language beside Bahasa Melayu/Malay, English, Bahasa Indonesia, Hokkien
+		* true ONLY if candidate can realistically perform the role
+		* false if major blockers exist
+
+    3. VISA / RELOCATION
+		* Detect if sponsorship is required, mentioned, or not stated
+		* Flag if there are risks
+		* "visa_sponsorship": Must be exactly one of these values (Select ONLY one of the following):
+			* "NO SPONSORSHIP EXPLICITLY" (If citizenship/work rights/PR are EXPLICITLY required or sponsorship EXPLICITLY denied)
+			* "NO TALK ABOUT SPONSORSHIP" (Default if not mentioned)
+			* "SPONSORSHIP/RELOCATION IS CONSIDERED" (If mentioned as a possibility)
+			* "SPONSORSHIP IS GIVEN" (If explicitly offered)
+			* "RELOCATION IS GIVEN" (If relocation assistance is mentioned)
+
+    4. LANGUAGE REQUIREMENT
+		* Ensure candidate meets language expectations
+		* If unclear → assume "OK" but mention uncertainty
+		* Flag if explicitly ask for language beside (Bahasa Melayu/Malay, English, Bahasa Indonesia, Hokkien)
+		* List all required languages as a comma-separated string (e.g., "English, German").
+
+    5. MISSING REQUIREMENTS
+
+		* List ONLY critical gaps that may affect hiring decision
+		* List critical technical or soft skill gaps.
+
+    6. MANDATORY DOCUMENTS
+
+		* List items explicitly requested (CV, Portfolio, etc.).
+		* Extract from job description if mentioned:
+			* CV
+			* Cover Letter
+			* Portfolio
+			* Certificates
+			* Other documents
+		* If not explicitly mentioned → return empty list
+
+    7. COVER LETTER REQUIREMENT
+		* cover_letter_required": true ONLY if:
+			* explicitly required OR
+			* strongly implied (e.g. formal application process) OR
+			* if applying via a formal portal where it is standard.
+		* otherwise false
+
+    ---
+
+    RULES:
+		* No explanation outside JSON
+		* No markdown
+		* No extra text
+		* Keep notes concise but insightful
+		* Do not hallucinate requirements
+		* No prose or conversational filler.
+
+
+    ----------------------
+
+    [SUITABILITY NOTE]
+
+    [SUITABILITY_NOTE_HERE]
+
+    ----------------------
+
+    [ADDITIONAL_QUESTIONS_HERE]
+
+    ----------------------
+
+    [OUTPUT RULES]
+    1. OUTPUT STRICTLY IN JSON.
+        * Keep notes concise but insightful
+        * Do not hallucinate requirements or my background or suitability
+    2. Use this schema: {"type": "object", "properties": {"match_score": {"type": "number"}, "is_suitable": {"type": "boolean"}, "visa_sponsorship": {"type": "string", "enum": ["NO SPONSORSHIP EXPLICITLY", "NO TALK ABOUT SPONSORSHIP", "SPONSORSHIP/RELOCATION IS CONSIDERED", "SPONSORSHIP IS GIVEN", "RELOCATION IS GIVEN"]}, "language_fit": {"type": "string"}, "notes": {"type": "array", "items": {"type": "string"}}, "missing_requirements": {"type": "array", "items": {"type": "string"}}, "mandatory_documents": {"type": "array", "items": {"type": "string"}}, "cover_letter_required": {"type": "boolean"}, "additional_answers": {"type": "array", "items": {"type": "object", "properties": {"question": {"type": "string"}, "answer": {"type": "string"}}}}}, "required": ["match_score", "is_suitable", "visa_sponsorship", "language_fit", "mandatory_documents", "cover_letter_required"]}
+    3. Do not include any markdown formatting tags or prose.
+
+    ----------------------
+
+    OUTPUT STRICTLY IN JSON:
+    {'type': 'object', 'properties': {'match_score': {'type': 'number'}, 'is_suitable': {'type': 'boolean'}, 'visa_sponsorship': {'type': 'string', 'enum': ['NO SPONSORSHIP EXPLICITLY', 'NO TALK ABOUT SPONSORSHIP', 'SPONSORSHIP/RELOCATION IS CONSIDERED', 'SPONSORSHIP IS GIVEN', 'RELOCATION IS GIVEN']}, 'language_fit': {'type': 'string'}, 'notes': {'type': 'array', 'items': {'type': 'string'}}, 'missing_requirements': {'type': 'array', 'items': {'type': 'string'}}, 'mandatory_documents': {'type': 'array', 'items': {'type': 'string'}}, 'cover_letter_required': {'type': 'boolean'}, 'additional_answers': {'type': 'array', 'items': {'type': 'object', 'properties': {'question': {'type': 'string'}, 'answer': {'type': 'string'}}}}}, 'required': ['match_score', 'is_suitable', 'visa_sponsorship', 'language_fit', 'mandatory_documents', 'cover_letter_required']}
+
+
+
+    If additional questions exist, include:
+    "additional_answers": [{"question": "...", "answer": "..."}]
+
+
+------------------------
+
+# B. RESUME
+
+	Generating Resume JSON
+
+	[INSTRUCTION]
+	WRITE ME RESUME CONTAINING ONLY RELEVANT INFORMATION AND SKILLS WITH THE JOB. 
+		- Keep bullets tight & concise
+		- Match my résumé to this job description
+		- Highlight gaps and suggest keyword-rich bullets to close them
+		- Replace duties with outcomes. 
+		- sound results-driven and quantifiable for [target role].
+			Find every action verb and add a measurable result (%, $, #) wherever possible
+			Don’t add random number, just information I gave before 
+		- 1-page A4 CV, optimized for the job ads
+		- Bullet points only
+		- For education, experience, research, project, volunteering (optional): ~80–100 characters per bullet (tight, job-type-optimized-style)
+		- Results-focused; Only relevant content; Numerial-result-focus; No invented numbers
+		- Font/layout (11pt Roboto) assumed at formatting stage
+		- ATS optimized
+		- You are critical HR Analyst & ATS Machine make sure you make the CV into 100/100
+		- If job desc not relevant to research, you can merge the wilmar research to SDLC position (1 job but the project below research move to SDLC). But, if the position is research then separate the research position
+		- Skill section of the CV, with style: SKILL CATEGORY TITLE: SHORT LIST OF SKILLS
+
+	---
+
+	RULES:
+		* No explanation outside JSON
+		* No markdown
+		* No extra text
+		* Keep notes concise but insightful
+		* Do not hallucinate requirements
+		* Do NOT generate placeholder text such as "titlebullets", "lorem ipsum", "TBD", or similar.
+		* Only include "projects" if there are real, concrete items. If no project exists, omit the "projects" field entirely. Do NOT generate placeholder text such as "titlebullets", "lorem ipsum", "TBD", or similar.
+
+	----------------------
+
+	[SUITABILITY NOTE]
+
+	[SUITABILITY_NOTE_HERE]
+
+	----------------------
+
+	OUTPUT STRICTLY IN JSON:
+		{'type': 'object', 'properties': {'summary': {'type': 'array', 'items': {'type': 'string'}}, 'experience': {'type': 'array', 'items': {'type': 'object', 'properties': {'title': {'type': 'string'}, 'company': {'type': 'string'}, 'location': {'type': 'string'}, 'time': {'type': 'string'}, 'bullets': {'type': 'array', 'items': {'type': 'string'}}, 'projects': {'type': 'array', 'items': {'type': 'string'}}}, 'required': ['title', 'company', 'location', 'time', 'bullets']}}, 'projects': {'type': 'array', 'items': {'type': 'object', 'properties': {'title': {'type': 'string'}, 'bullets': {'type': 'array', 'items': {'type': 'string'}}}, 'required': ['title', 'bullets']}}, 'tech': {'type': 'array', 'items': {'type': 'object', 'properties': {'title': {'type': 'string'}, 'value': {'type': 'string'}}, 'required': ['title', 'value']}}, 'skills': {'type': 'array', 'items': {'type': 'object', 'properties': {'title': {'type': 'string'}, 'value': {'type': 'string'}}, 'required': ['title', 'value']}}, 'awards': {'type': 'array', 'items': {'type': 'string'}}, 'education': {'type': 'object', 'properties': {'focus': {'type': 'string'}, 'thesis': {'type': 'string'}}, 'required': ['focus', 'thesis']}}, 'required': ['summary', 'experience', 'tech', 'skills', 'education']}
+
+	Note:
+	"projects" inside "experience" is optional and only used if there is NDA projects done under that company.
+
+------------------------
+
+# C. COVER LETTER
+
+	[INSTRUCTION]
+	Wrote me a personalized cover letter, with information only from my MAIN CV + MAIN COVER LETTER + MY SAMPLE PROJECTS.
+
+		- Concise only the points relevant to the job, connect back to my experience (MAIN COVER LETTER + RESUME + projects) preferably with quantifiable result or sample with named project title. Rule as follow:
+
+		- convincingly frame my past work to fit requirement of this job
+
+		- Make sure the cover letter containing: Tech Stack and skills required for this position that I have.
+
+		- I willing to relocate + I am eligible for EU Blue Card with my 4+ years work experience & Master from EMJMD & my thesis from Chalmers university. I am confident this process can be managed smoothly with employer support.
+
+		- Dont be too long 3-4 paragraphs 200 words should be sufficient. Focus only to relevant points
+
+		- WRITE ME A TAILORED COVER LETTER FULL OF RELEVANCY BETWEEN MY PROFILE & PROJECT AND THE JOB DESCRIPTION. IF THE JOB ADS CONTAIN 'Your application will include the following questions'. Make sure the essay contains the answer of the questions too as well as the relevancy.
+
+		- THE COVER LETTER SHOULD BE IN THE FORM OF COHERENCE ESSAY PARAGRAPHS
+			Focus on the correlation between job desc requirement : My experience relevance ONLY USED INFO FROM MY PROFILE, PROJECTS, ESSAY, AND RESPECTIVE JOB ADS I GAVE PRIOR.
+			Cover letter straightfoward with only information I gave, preferable with quantifiable result and named projects.
+
+		- Make it sounds more human. Using more daily conversation (casual enough for sounds human. Formal enough for work motivation letter). Each sentence should have different length (But on most cases make the sentence shorter, because too long sentence or too much conjugated-sentence sounds AI).
+
+		- Don't start with something similar to : I've following [Company] for a while
+
+	---
+
+	RULES:
+
+		* No explanation outside JSON
+			* No markdown
+			* No extra text
+		* Keep notes concise but insightful
+		* Do not hallucinate requirements
+
+	----------------------
+
+	[SUITABILITY NOTE]
+
+	[SUITABILITY_NOTE_HERE]
+
+
+	----------------------
+
+	OUTPUT STRICTLY IN JSON:
+	{'type': 'object', 'properties': {'job_title': {'type': 'string'}, 'company_name': {'type': 'string'}, 'company_location': {'type': 'string'}, 'hiring_manager_name': {'type': 'string'}, 'company_address': {'type': 'string'}, 'letter_date': {'type': 'string'}, 'body': {'type': 'array', 'items': {'type': 'string'}}}, 'required': ['job_title', 'company_name', 'company_location', 'body']}
+
+----------------------
+
+
+# INFORMATION FOR THE GENERATED CONTENT COME STRICTLY FROM MY PROFILE, PROJECT, AND THE JOB ADS. PROFILE & PROJECT CAN BE FOUND BELOW.
+
+[PROFILE]
+YOU COMPLETE PROFILE/CV HERE
+
+======================
+
+[PROJECTS]
+YOUR PORTFOLIO HERE
+    
