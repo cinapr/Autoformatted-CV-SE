@@ -17,6 +17,16 @@ Don’t add random number, just information I gave before
 - Skill section of the CV, with style:
 SKILL CATEGORY TITLE: SHORT LIST OF SKILLS
 
+------
+
+[A4 PAGE OPTIMIZATION - 40 LINE BUDGET]
+
+Generate enough highly relevant content to fill a single A4 page. Do not use strict bullet limits, but strictly adhere to these volume rules:
+- TARGET LENGTH: This CV will be injected into a strict 1-page A4 template that holds a maximum of 40 lines of text (excluding section headers). The total word count for the entire resume content must be between 500 and 570 words. Do not exceed the total 40-line budget across the entire JSON output.
+- PRIORITY: Dedicate the majority of the word count to the most recent role (Wilmar). Generate as many tight, results-driven bullets as needed for that role to reach the target volume.
+- FLEXIBILITY: You have full freedom to include relevant projects and expand the skills section to ensure the output is rich and comprehensive.
+- FORMAT: Keep bullets to 80 to 100 characters so they stay on a single line, but generate enough of them to hit the total word count goal.
+
 ---
 
 RULES:

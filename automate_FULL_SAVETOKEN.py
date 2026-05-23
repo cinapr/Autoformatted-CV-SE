@@ -69,12 +69,12 @@ def main():
         job_desc = input("Job Title without space or special character: ") or ""
 
         scrap_path = input("Linkedin Scrap Txt Path: ") or "scrapLinkedin_" + job_desc + ".txt"
-        profile_path = input("Profile Path: ") or ".\PROMPT\PROFILE.txt"
+        profile_path = input("Profile Path: ") or ".\PROMPT\CINDYPROFILE.txt"
 
         #prompt_check_path = input("Prompt Check Path: ") or ".\PROMPT\PROMPT_CHECK.txt"
         prompt_check_path = input("Prompt Check Full Path: ") or ".\PROMPT\PROMPT_FULL.txt"
 
-        template_cv_path = input("Prompt Template CV Path: ") or ".\TEMPLATE\TEMPLATE_CV.docx"
+        template_cv_path = input("Prompt Template CV Path: ") or ".\TEMPLATE\TEMPLATE_CV2.docx"
         prompt_cv_path = input("Prompt CV: ") or ".\PROMPT\PROMPT_CV.txt" 
         data_cv_path = input("Prompt CV JSON Output Path: ") or "data_cv.json"
 
