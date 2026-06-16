@@ -254,6 +254,9 @@ OUTPUT STRICTLY IN JSON:
     result_text += "\n============================\n"
 
     print(result_text)
+
+    result_text += "\n" + suitability_note + "\n"
+
     appendLinkedinResult(scrap_path, check_data, result_text)
 
     if mode == "1":
